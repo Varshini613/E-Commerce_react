@@ -11,6 +11,9 @@ const bannerImages = [
 
 
 
+
+
+
 // Product data
 const latestProducts = [
   { id: 1, image: "https://m.media-amazon.com/images/I/81rxulFBZoL._AC_UL480_FMwebp_QL65_.jpg" },

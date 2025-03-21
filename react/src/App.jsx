@@ -10,11 +10,6 @@ import MyList from './MyList';
 import Home from './Home';
 
 
-
-
-
-
-
 function App() {
   const [authorized, setAuthorized] = useState(false);
 

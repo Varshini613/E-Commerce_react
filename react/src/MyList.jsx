@@ -1,27 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./MyList.css"; // Import styles
 
 const MyList = () => {
   return (
-    <header className="dashboard-header">
-      <h1 className="header-title">Biscuits</h1>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+      <div className="container">
+        <Link className="navbar-brand fw-bold text-primary" to="/home">
+          🧁 Biscuits
+        </Link>
 
-      <nav className="nav-links">
-        <ul>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/products">Products</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-      <div className="header-buttons">
-        <button className="header-btn"><Link to="/login">Login</Link></button>
-        <button className="header-btn"><Link to="/Register">Register</Link></button>
-        <button className="header-btn"><Link to="/CartPage">🛒 Cart</Link></button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          {/* Left-side nav links */}
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/home">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">
+                Products
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
+                Contact
+              </Link>
+            </li>
+          </ul>
+
+          {/* Right-side buttons */}
+          <div className="d-flex gap-2">
+            <Link to="/login" className="btn btn-outline-primary">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-outline-secondary">
+              Register
+            </Link>
+            <Link to="/CartPage" className="btn btn-outline-success">
+              🛒 Cart
+            </Link>
+          </div>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 

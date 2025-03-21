@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css"; // Use a common CSS file for both
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -17,57 +17,73 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Registered Successfully!");
-    navigate("/login"); 
+    navigate("/login");
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h2 className="auth-title">Register</h2>
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
+        {/* Register Form Header */}
+        <h2 className="text-center mb-4">Register</h2>
 
+        {/* Registration Form */}
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label>Full Name</label>
+          {/* Full Name */}
+          <div className="mb-3">
+            <label className="form-label">Full Name</label>
             <input
               type="text"
               name="name"
+              className="form-control"
+              placeholder="Enter Your Name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter Your Name"
               required
             />
           </div>
 
-          <div className="input-group">
-            <label>Email Address</label>
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label">Email Address</label>
             <input
               type="email"
               name="email"
+              className="form-control"
+              placeholder="name@example.com"
               value={formData.email}
               onChange={handleChange}
-              placeholder="name@example.com"
               required
             />
           </div>
 
-          <div className="input-group">
-            <label>Password</label>
+          {/* Password */}
+          <div className="mb-3">
+            <label className="form-label">Password</label>
             <input
               type="password"
               name="password"
+              className="form-control"
+              placeholder="Enter Password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Password"
               required
             />
           </div>
 
-          <button type="submit" className="auth-btn">Register</button>
+          {/* Submit Button */}
+          <button type="submit" className="btn btn-success w-100">
+            Register
+          </button>
         </form>
 
-        <p className="auth-footer">
+        {/* Login Redirect */}
+        <p className="text-center mt-3">
           Already have an account?{" "}
-          <span className="toggle-link" onClick={() => navigate("/login")}>
+          <span
+            className="text-primary"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/login")}
+          >
             Login
           </span>
         </p>

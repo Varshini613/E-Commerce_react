@@ -1,0 +1,36 @@
+.about-container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  h2 {
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  
+  ul {
+    text-align: left;
+    margin: 10px auto;
+    width: 50%;
+  }
+  
+  li {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  

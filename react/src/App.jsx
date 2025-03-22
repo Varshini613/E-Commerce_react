@@ -10,22 +10,6 @@ import Home from './Components/Home';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function App() {
   return (
     <Router>
@@ -47,6 +31,7 @@ function MainApp() {
       <Routes>
         <Route path="/login" element={<Login setAuthorized={setAuthorized} />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Dashboard />} />
         <Route path="/contact" element={<Contact />} />

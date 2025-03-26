@@ -8,7 +8,7 @@ function Dashboard({ authorized }) {
   const [category, setCategory] = useState("All");
 
   const increaseQuantity = () => setQuantity(quantity + 1);
-  const decreaseQuantity = () => quantity > 1 && setQuantity(quantity - 1);
+  const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
 
   const filteredData = emojiData.filter(
     (emoji) =>

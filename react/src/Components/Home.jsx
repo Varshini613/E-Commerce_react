@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaGoogle, FaBehance } from "react-icons/fa";
@@ -6,7 +7,9 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaGoogle, FaBehance } f
 const bannerImages = [
   "/Black White and Red Minimalist Market Shops Discount Black Friday Banner.png",
   "/Red Cream Green Vintage Illustrative Voucher Food Ticket.png",
-  "/Black White and Red Minimalist Market Shops Discount Black Friday Banner.png",
+  "/Black and Red Modern Black Friday Banner.png",
+  "/Yellow and White Modern Illustrative Cyber Monday Sale Banner.png",
+  "/Yellow  and Black Modern Church Events Banner.png"
 ];
 
 const latestProducts = [
@@ -32,7 +35,7 @@ function Home() {
     <div>
       {/* Banner Section */}
       <div className="w-100 px-0">
-        <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="1000">
           <div className="carousel-inner rounded shadow">
             {bannerImages.map((img, index) => (
               <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
@@ -82,52 +85,64 @@ function Home() {
                 <p className="fw-bold">{selectedProduct.price}</p>
                 <p>High-quality {selectedProduct.name} for your everyday needs.</p>
               </div>
-              <div className="modal-footer">
-                <button className="btn btn-success">Buy Now</button>
-                <button className="btn btn-warning">Add to Cart</button>
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                  Close
-                </button>
-              </div>
+              <div className="modal-footer d-flex justify-content-center">
+  <button className="btn btn-success mx-2">Buy Now</button>
+  <button className="btn btn-warning mx-2">Add to Cart</button>
+  
+</div>
+
             </div>
           </div>
         </div>
       )}
 
       {/* Footer Section */}
-      <footer className="bg-dark text-white mt-5 pt-4 pb-2 w-100">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-4">
-              <h5 className="fw-bold">Commerce Theme</h5>
-              <p className="text-muted small">Get monthly updates and free resources.</p>
-              <div className="input-group">
-                <input type="email" className="form-control" placeholder="Enter your email" />
-                <button className="btn btn-primary">Subscribe</button>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <h5 className="fw-bold">Contact Us</h5>
-              <p className="small mb-1"><strong>Phone:</strong> +1 (0) 000 0000 001</p>
-              <p className="small mb-1"><strong>Email:</strong> yourmail@example.com</p>
-              <p className="small"><strong>Address:</strong> 1234 Street Name, City, AA 99999</p>
-            </div>
-            <div className="col-md-4">
-              <h5 className="fw-bold">Quick Links</h5>
-              <ul className="list-unstyled small">
-                <li><a href="#" className="small text-white text-decoration-none">About Us</a></li>
-                <li><a href="#" className="small text-white text-decoration-none">Services</a></li>
-                <li><a href="#" className="small text-white text-decoration-none">Get in Touch</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="text-center border-top mt-3 pt-2">
-         
-          <p className="small text-white mb-0">&copy; 2025 Your Company. All rights reserved.</p>
-   
-          </div>
+      
+<footer className="bg-dark text-white mt-5 pt-4 pb-2 w-100">
+  <div className="container-fluid">
+    <div className="row">
+      <div className="col-md-4">
+        <h5 className="fw-bold">ShopEase</h5>
+        <p className="text-muted small">Get monthly updates and free resources.</p>
+        <div className="input-group">
+          <input type="email" className="form-control" placeholder="Enter your email" />
+          <button className="btn btn-primary">Subscribe</button>
         </div>
-      </footer>
+      </div>
+      <div className="col-md-4">
+        <h5 className="fw-bold">Contact Us</h5>
+        <p className="small mb-1"><strong>Phone:</strong> +1 (0) 000 0000 001</p>
+        <p className="small mb-1"><strong>Email:</strong> yourmail@example.com</p>
+        <p className="small"><strong>Address:</strong> 1234 Street Name, City, AA 99999</p>
+      </div>
+      <div className="col-md-4">
+        <h5 className="fw-bold">Quick Links</h5>
+        <ul className="list-unstyled small">
+          <li><Link to="/about" className="small text-white text-decoration-none">About Us</Link></li>
+          <li><Link to="/products" className="small text-white text-decoration-none">Products</Link></li>
+          <li><Link to="/contact" className="small text-white text-decoration-none">Get in Touch</Link></li>
+          <li><Link to="/terms" className="small text-white text-decoration-none">Terms & Conditions</Link></li>
+          <li><Link to="/privacy" className="small text-white text-decoration-none">Privacy Policy</Link></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Social Media Icons */}
+    <div className="text-center mt-3">
+      <a href="#" className="text-white mx-2"><FaFacebookF size={20} /></a>
+      <a href="#" className="text-white mx-2"><FaInstagram size={20} /></a>
+      <a href="#" className="text-white mx-2"><FaTwitter size={20} /></a>
+      <a href="#" className="text-white mx-2"><FaYoutube size={20} /></a>
+      <a href="#" className="text-white mx-2"><FaGoogle size={20} /></a>
+      <a href="#" className="text-white mx-2"><FaBehance size={20} /></a>
+    </div>
+
+    <div className="text-center border-top mt-3 pt-2">
+      <p className="small text-white mb-0">&copy; 2025 ShopEase. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }

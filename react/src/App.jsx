@@ -7,7 +7,8 @@ import About from './Components/About';
 import Register from "./Register";
 import MyList from './MyList'; 
 import Home from './Components/Home';
-
+import TermsAndConditions from "./Components/TermsAndConditions";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
 
 
 function App() {
@@ -36,6 +37,9 @@ function MainApp() {
         <Route path="/products" element={<Dashboard />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+
       </Routes>
     </>
   );

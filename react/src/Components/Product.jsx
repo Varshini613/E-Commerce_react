@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emojiData from "./emojipedia";
+import emojiData from "../emojipedia";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Dashboard({ authorized }) {
@@ -10,6 +10,9 @@ function Dashboard({ authorized }) {
   const [price, setPrice] = useState("All");
   const [brand, setBrand] = useState("All");
   const [discount, setDiscount] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 9;
+  
 
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
@@ -18,18 +21,23 @@ function Dashboard({ authorized }) {
   const filteredData = emojiData.filter((emoji) => {
     const categoryMatch = category === "All" || emoji.category === category;
     const searchMatch = emoji.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-    const priceMatch =
-      price === "All" ||
-      (price === "Under 500" && emoji.price < 500) ||
-      (price === "500 - 1000" && emoji.price >= 500 && emoji.price <= 1000) ||
-      (price === "Above 1000" && emoji.price > 1000);
+ 
+  const priceMatch =
+  price === "All" ||
+  (price === "Under 500" && Number(emoji.price) < 500) ||
+  (price === "500 - 1000" && Number(emoji.price) >= 500 && Number(emoji.price) <= 1000) ||
+  (price === "Above 1000" && Number(emoji.price) >= 1000);
 
     const brandMatch = brand === "All" || emoji.brand === brand;
     const discountMatch = discount === "All" || emoji.discount >= parseInt(discount);
 
     return categoryMatch && searchMatch && priceMatch && brandMatch && discountMatch;
   });
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredData.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredData.length / productsPerPage);
 
   return (
     <div className="container my-4">
@@ -57,7 +65,7 @@ function Dashboard({ authorized }) {
                 <div key={range} className="form-check">
                   <input
                     className="form-check-input"
-                    type="radio"
+                    type="checkbox"
                     name="price"
                     value={range}
                     checked={price === range}
@@ -84,7 +92,7 @@ function Dashboard({ authorized }) {
     <div key={b} className="form-check">
       <input
         className="form-check-input"
-        type="radio"
+        type="checkbox"
         name="brand"
         value={b}
         checked={brand === b}
@@ -103,7 +111,7 @@ function Dashboard({ authorized }) {
                 <div key={d} className="form-check">
                   <input
                     className="form-check-input"
-                    type="radio"
+                    type="checkbox"
                     name="discount"
                     value={d}
                     checked={discount === d}
@@ -127,8 +135,8 @@ function Dashboard({ authorized }) {
           />
 
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            {filteredData.length > 0 ? (
-              filteredData.map((emoji) => (
+            {currentProducts.length > 0 ? (
+              currentProducts.map((emoji) => (
                 <div className="col" key={emoji.id}>
                   <div className="card h-100 shadow-sm"
                     onClick={() => setSelectedEmoji(emoji)}
@@ -154,9 +162,10 @@ function Dashboard({ authorized }) {
 
                       </div>
                       <div className="d-grid gap-2">
-                        <button className="btn btn-primary btn-sm">Buy Now</button>
-                        <button className="btn btn-outline-success btn-sm">Add to Cart</button>
-                      </div>
+  <button className="btn btn-primary btn-sm w-100">Buy Now</button>
+  <button className="btn btn-success text-white btn-sm w-100">Add to Cart</button>
+</div>
+
                     </div>
                   </div>
                 </div>
@@ -167,51 +176,106 @@ function Dashboard({ authorized }) {
           </div>
         </div>
       </div>
-
-      {/* Bootstrap Modal for Product Details */}
-      <div className="modal fade" id="productModal" tabIndex="-1" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            {selectedEmoji && (
-              <>
-                <div className="modal-header">
-                  <h5 className="modal-title">{selectedEmoji.name}</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                {/* <div className="modal-body text-center"> */}
-                <div className="modal-body text-center" style={{ maxHeight: "350px", overflowY: "auto" }}>
-
-                  <img
-                    src={selectedEmoji.emoji.props.src}
-                    alt={selectedEmoji.name}
-                    className="img-fluid mb-3"
-                    style={{ maxHeight: "200px", objectFit: "contain" }}
-                  />
-                  <p dangerouslySetInnerHTML={{ __html: selectedEmoji.meaning }}></p>
-
-                  <p><strong>Description:</strong> {selectedEmoji.extraInfo}</p>
-                  
-                </div>
-                <div className="d-flex justify-content-center align-items-center mb-3">
-                    <button className="btn btn-outline-secondary" onClick={decreaseQuantity}>-</button>
-                    <span className="mx-3">{quantity}</span>
-                    <button className="btn btn-outline-secondary" onClick={increaseQuantity}>+</button>
-                  </div>
-                  <div className="modal-footer d-flex justify-content-center">
-                <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">
-                     Add to Cart
-                </button>
-                 <button type="button" className="btn btn-primary">
-                     Buy Now
-                </button>
+                {/* ✅ Pagination */}
+                <nav className="mt-4">
+            <ul className="pagination justify-content-center">
+              {[...Array(totalPages)].map((_, index) => (
+                <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+                  <button className="page-link" onClick={() => setCurrentPage(index + 1)}>
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        
+    {/* Bootstrap Modal for Product Details */}
+<div className="modal fade" id="productModal" tabIndex="-1" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered">
+    <div className="modal-content">
+      {selectedEmoji && (
+        <>
+          <div className="modal-header">
+            <h5 className="modal-title">{selectedEmoji.name}</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-              </>
-            )}
-          </div>
-        </div>
+{/* Modal Body with Carousel */}
+<div className="modal-body text-center" style={{ maxHeight: "350px", overflowY: "auto" }}>
+  <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+    <div className="carousel-inner">
+      <div className="carousel-item active">
+        <img
+          src={selectedEmoji.emoji.props.src}
+          alt={selectedEmoji.name}
+          className="img-fluid"
+          style={{ maxHeight: "250px", maxWidth: "100%", objectFit: "contain" }}
+        />
       </div>
+      <div className="carousel-item">
+        <img
+          src={selectedEmoji.additionalImages[0]}
+          alt="Additional Image 1"
+          className="img-fluid"
+          style={{ maxHeight: "250px", maxWidth: "100%", objectFit: "contain" }}
+        />
+      </div>
+      <div className="carousel-item">
+        <img
+          src={selectedEmoji.additionalImages[1]}
+          alt="Additional Image 2"
+          className="img-fluid"
+          style={{ maxHeight: "250px", maxWidth: "100%", objectFit: "contain" }}
+        />
+      </div>
+      <div className="carousel-item">
+  <iframe
+    width="100%"
+    height="250"
+    src={selectedEmoji.video}
+    title="Product Video"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+    </div>
+    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+            <p dangerouslySetInnerHTML={{ __html: selectedEmoji.meaning }}></p>
+            <p><strong>About the item:</strong> {selectedEmoji.extraInfo}</p>
+          </div>
+
+          {/* Quantity and Buttons */}
+          <div className="d-flex justify-content-center align-items-center mb-3">
+            <button className="btn btn-outline-secondary" onClick={decreaseQuantity}>-</button>
+            <span className="mx-3">{quantity}</span>
+            <button className="btn btn-outline-secondary" onClick={increaseQuantity}>+</button>
+          </div>
+
+          <div className="modal-footer d-flex justify-content-center">
+            <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">
+              Add to Cart
+            </button>
+            <button type="button" className="btn btn-primary">
+              Buy Now
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }
 
 export default Dashboard;
+
+

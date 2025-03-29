@@ -1,31 +1,38 @@
 const emojipedia = [
-    {
-      id: 1,
-      emoji: <img src="https://m.media-amazon.com/images/I/61zzgxY+OzL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-      name: "Britannia JimJam Pops - Crunchy Open Cookie with Vanilla crème and Jammy",
-      meaning:
-        "Price : ₹100 (₹28.57/100 g)  <br/>  M.R.P: ₹1̶2̶0̶ (17% off)",
-        category:"Biscuits",
-      extraInfo: "First created in the 1930s, it became one of the most famous cookies worldwide.",
-      price :  "100",
-      brand : "Britannia",
-      discount : "17",
-     
-    },
-    {
-      id: 2,
-      emoji: <img src="https://m.media-amazon.com/images/I/61NxpyR9hfL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-      name: "Cadbury Chocobakes ChocLayered Cakes,(Cadbury Family Pack 200g)",
-      meaning:
-        "Price : ₹131 (₹57.46/100 g) <br/> M.R.P: ₹1̶7̶5̶ (25% off)",
-        category:"Biscuits",
-      extraInfo: "Delicious chocolate-filled cakes from Cadbury, perfect for snack time!",
-      price :  "131",
-      brand : "Cadbury ",
-      discount : "25",
-      
+  {
+    id: 1,
+    emoji: <img src="https://m.media-amazon.com/images/I/61zzgxY+OzL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+    name: "Britannia JimJam Pops - Crunchy Open Cookie with Vanilla crème and Jammy",
+    meaning: "Price : ₹100 (₹28.57/100 g)  <br/>  M.R.P: ₹1̶2̶0̶ (17% off)",
+    category: "Biscuits",
+    extraInfo: "First created in the 1930s, it became one of the most famous cookies worldwide.",
+    price: "100",
+    brand: "Britannia",
+    discount: "17",
+    additionalImages: [
+      "https://m.media-amazon.com/images/I/51wtkYxeB+L.jpg",
+      "https://m.media-amazon.com/images/I/51Z6uViJelL.jpg"
+    ],
+    video: "https://www.youtube.com/embed/zG8Pp0Ku4vo"
+   },
+  {
+    id: 2,
+    emoji: <img src="https://m.media-amazon.com/images/I/61NxpyR9hfL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+    name: "Cadbury Chocobakes ChocLayered Cakes,(Cadbury Family Pack 200g)",
+    meaning: "Price : ₹131 (₹57.46/100 g) <br/> M.R.P: ₹1̶7̶5̶ (25% off)",
+    category: "Biscuits",
+    extraInfo: "Delicious chocolate-filled cakes from Cadbury, perfect for snack time!",
+    price: "131",
+    brand: "Cadbury",
+    discount: "25",
+    additionalImages: [
+      "https://m.media-amazon.com/images/I/712AWZeSGBL._SL1100_.jpg",
+      "https://m.media-amazon.com/images/I/51ca0MT-VUL._SL1100_.jpg"
+    ],
+    video: "https://www.youtube.com/embed/8FHjx0RCTYQ"
+  },
 
-    },
+
     {
       id: 3,
       emoji: <img src="https://m.media-amazon.com/images/I/61yw3xmGdpL._AC_UL960_FMwebp_QL65_.jpg"></img>,
@@ -36,8 +43,13 @@ const emojipedia = [
          extraInfo: "Gluten-free and high in fiber. A healthy snack option for all ages.",
         price :  "245",
         brand : "Sunfeast",
-        discount : "5",
-
+        discount : "5", 
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/61S-s1Bb6JL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61BpQRxlWNL._SX679_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
+        
       
     },
     {
@@ -51,6 +63,11 @@ const emojipedia = [
         price :  "107",
         brand : "Sunfeast",
         discount : "37",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/91sysS5+fgL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/710O4EmphyL._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -64,6 +81,11 @@ const emojipedia = [
         price :  "100",
         brand : "Sunfeast",
         discount : "58",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/91LV5-pWIgL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/71wmRd0g+4L._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
 
     },
@@ -78,6 +100,11 @@ const emojipedia = [
         price :  "141",
         brand : "Britannia",
         discount : "56",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/717PnAHHYxL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61u-BPKhghL._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -91,7 +118,11 @@ const emojipedia = [
         price :  "145",
         brand : "Karachi Bakery",
         discount : "19",
-
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71xbwvV65kL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81eWzK4xFyL._SY879_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
     },
     {
       id: 8,
@@ -104,6 +135,11 @@ const emojipedia = [
         price :  "150",
         brand : "Unibic",
         discount : "53",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71cjLcT9KqL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/618LtExQP3L._SX679_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -117,6 +153,11 @@ const emojipedia = [
         price :  "139",
         brand : "Britannia",
         discount : "30",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/61Pvb0Rh0yL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61qcX0W2d9L._SX679_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
 
     },
@@ -131,6 +172,11 @@ const emojipedia = [
         price :  "245",
         brand : "Britannia",
         discount : "60",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/81Dz3r4zMmL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71tId5WBSOL._SX679_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -144,6 +190,11 @@ const emojipedia = [
         price :  "190",
         brand : "Unibic",
         discount : "50",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71ocwJ8S+jL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/715sWq+pwHL._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -157,6 +208,12 @@ const emojipedia = [
         price :  "71",
         brand : "Sunfeast",
         discount : "58",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/912hElI+AaL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/81v1VxLOm3L._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
+
 
     },
     {
@@ -170,7 +227,11 @@ const emojipedia = [
         price :  "51",
         brand : "Parle",
         discount : "15",
-
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71DhvrRKXPL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61a30EbMUAL._SX679_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
     },
     {
       id: 14,
@@ -182,6 +243,11 @@ const emojipedia = [
        price :  "9",
        brand : "Cadbury",
        discount : "10",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/71f8ZwvDXZL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71ZxoU11OgL._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -195,6 +261,11 @@ const emojipedia = [
         price :  "102",
         brand : "Sunfeast",
         discount : "36",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/91YDBu8n9nL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/81WvvTw5IdL._SL1500_.jpg"
+        ],
+        video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -207,6 +278,11 @@ const emojipedia = [
        price :  "21",
        brand : "Sunfeast",
        discount : "40",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/71kviHc+kuL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/91iRamHON0L._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -219,6 +295,11 @@ const emojipedia = [
        price :  "77",
        brand : "Britannia",
        discount : "49",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/81PmcAC0bBL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/71ZJmyXxi8L._SX679_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -231,6 +312,11 @@ const emojipedia = [
        price :  "91",
        brand : "Parle",
        discount : "9",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/61omzFQ5WnL._SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/71EdPu8oBHL._SL1158_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -243,6 +329,11 @@ const emojipedia = [
        price :  "54",
        brand : "Britannia",
        discount : "2",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/81vz+jckNtL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/71b0Wlr0FHL._SX679_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
 
     },
@@ -256,6 +347,11 @@ const emojipedia = [
        price :  "50",
        brand : "Britannia",
        discount : "2",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/81pkEM5iJcL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/81WpPvdbAdL._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -268,6 +364,11 @@ const emojipedia = [
        price :  "82",
        brand : "Sunfeast",
        discount : "45",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/61MFxAlI6aL._SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/91tkNWU+grL._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -280,6 +381,11 @@ const emojipedia = [
        price :  "50",
        brand : "Britannia",
        discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/81uYM5vSySL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71kuhGJF5-L._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -292,6 +398,11 @@ const emojipedia = [
        price :  "180",
        brand : "Karachi Bakery",
        discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/91w9lnQ9b6L._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/914yQMLVDsL._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -304,6 +415,11 @@ const emojipedia = [
        price :  "495",
        brand : "Diabexy",
        discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/71d5qdLVpNL._SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/61ZDbtLCd2L._SL1200_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
     },
     {
@@ -316,6 +432,11 @@ const emojipedia = [
        price :  "10",
        brand : "Parle",
        discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/8117ZZ8YC-L._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/91Yw+xJS5gL._SX679_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
 
 
     },
@@ -329,6 +450,11 @@ const emojipedia = [
        price :  "339",
        brand : "Storio",
        discount : "42",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/618QHteiqzL._SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/71wFz40AsvL._SL1500_.jpg"
+      ],
+      video: "https://www.example.com/sample-video2.mp4"
     },
     {
     id: 27,
@@ -340,10 +466,15 @@ const emojipedia = [
      price :  "286",
      brand : "Storio",
      discount : "35",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/71OWlLQ1BiL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71rNJcE4TEL._SL1500_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 28,
-    emoji: <img src="https://m.media-amazon.com/images/I/71F0EW3-gBL._SX679_.jpg"></img>,
+    emoji: <img src="https://m.media-amazon.com/images/I/61WuFf0pKmL._SX679_.jpg"></img>,
     name: "Storio Rubber Colorful Floating Baby Toys",
      meaning:"Price : ₹286   <br/>  M.R.P: ₹4̶3̶7̶(35%)" ,
      category:"Toys",
@@ -351,6 +482,11 @@ const emojipedia = [
      price :  "286",
      brand : "Storio",
      discount : "35",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/51Znff5+CAL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51jnTYKcwbL._SX679_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 29,
@@ -362,6 +498,11 @@ const emojipedia = [
      price :  "549",
      brand : "Wembley",
      discount : "0",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/614rsZHDg5L._SL1100_.jpg",
+      "https://m.media-amazon.com/images/I/61VcPD1bpqL._SL1100_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 30,
@@ -373,6 +514,11 @@ const emojipedia = [
      price :  "599",
      brand : "Wembley",
      discount : "40",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/616Vt2ibRDL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61bKwy98HxL._SL1100_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 31,
@@ -384,6 +530,11 @@ const emojipedia = [
      price :  "169",
      brand : "Graphene",
      discount : "72",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/61A3zSOkyfL._SL1001_.jpg",
+      "https://m.media-amazon.com/images/I/61Rn6oao65L._SL1280_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 32,
@@ -392,9 +543,14 @@ const emojipedia = [
     meaning: "Price : ₹299 <br/> M.R.P: ₹1̶4̶9̶9̶ (80%)",
      category:"Toys",
      extraInfo: "It is an interactive and engaging learning tool for kids. Featuring voice-assisted learning, these flashcards help improve vocabulary, pronunciation, and cognitive skills.",
-     price :  "1499",
+     price :  "299",
      brand : "Graphene",
      discount : "80",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/61s04JRJHiL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61oc2F1fYwL._SL1024_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
     id: 33,
@@ -406,9 +562,14 @@ const emojipedia = [
      price :  "399",
      brand : "Storio",
      discount : "50",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/61Qv4WXEP9L._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61MvTJBH5eL._SX679_.jpg"
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
-    id: 33,
+    id: 34,
     emoji: <img src="https://m.media-amazon.com/images/I/31iv+0SXFtL._SY300_SX300_.jpg"></img>,
     name: "Storio Cute Duck Swimming Toy",
     meaning: "Price : ₹179 <br/> M.R.P: ₹3̶0̶9̶ (42%)",
@@ -417,9 +578,15 @@ const emojipedia = [
      price :  "179",
      brand : "Storio",
      discount : "42",
+     additionalImages: [
+       "https://m.media-amazon.com/images/I/51R2S+TkoEL._SL1080_.jpg",
+      "https://m.media-amazon.com/images/I/61ljUWQEnmL._SX679_.jpg"
+     
+    ],
+    video: "https://www.example.com/sample-video2.mp4"
   },
   {
-    id: 34,
+    id: 35,
     emoji: <img src="https://m.media-amazon.com/images/I/61ETDu46z5L._SX679_.jpg"></img>,
     name: "Wembley Crawling Crab Baby Toy ",
     meaning: "Price : ₹579 <br/> M.R.P: ₹1̶,6̶9̶9̶ (66%)",
@@ -428,9 +595,15 @@ const emojipedia = [
      price :  "579",
      brand : "Wembley",
      discount : "66",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/61FMA004ZqL._SX679_.jpg",
+     "https://m.media-amazon.com/images/I/61DRrLxATgL._SL1100_.jpg"
+    
+   ],
+   video: "https://www.example.com/sample-video2.mp4"
   },
   {
-    id: 35,
+    id: 36,
     emoji: <img src="https://m.media-amazon.com/images/I/51nqXz7iWrL._SX679_.jpg"></img>,
     name: "Storio Toy Octopus ",
     meaning: "Price : ₹179 <br/> M.R.P: ₹3̶9̶9̶ (55%)",
@@ -439,6 +612,12 @@ const emojipedia = [
      price :  "179",
      brand : "Storio",
      discount : "55",
+     additionalImages: [
+      "https://m.media-amazon.com/images/I/514WWURnyRL._SX679_.jpg",
+     "https://m.media-amazon.com/images/I/51qS+J-HQ7L._SX679_.jpg"
+    
+   ],
+   video: "https://www.example.com/sample-video2.mp4"
   },
   ];
   

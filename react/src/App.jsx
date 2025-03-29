@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Login from "./Login";
-import Dashboard from "./dashboard";
+import Product from "./Components/Product";
 import Contact from "./Components/Contact";
 import About from './Components/About';
 import Register from "./Register";
-import MyList from './MyList'; 
+import Header from './Components/Header'; 
 import Home from './Components/Home';
 import TermsAndConditions from "./Components/TermsAndConditions";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
+import Footer from './Components/Footer';
+
+
 
 
 function App() {
@@ -28,19 +31,20 @@ function MainApp() {
 
   return (
     <>
-      {!hideHeaderPaths.includes(location.pathname) && <MyList />}
+      {!hideHeaderPaths.includes(location.pathname) && < Header/>}
       <Routes>
         <Route path="/login" element={<Login setAuthorized={setAuthorized} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/products" element={<Dashboard />} />
+        <Route path="/products" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
 
       </Routes>
+      <Footer />
     </>
   );
 }

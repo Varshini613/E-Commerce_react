@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "proxy": "https://sridiya.com",
+
     "lint": "eslint .",
     "preview": "vite preview"
   },

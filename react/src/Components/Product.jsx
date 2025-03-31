@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import emojiData from "../emojipedia";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CartPage from "../CartPage";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard({ authorized }) {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -17,6 +19,37 @@ function Dashboard({ authorized }) {
 
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
+  const navigate = useNavigate(); 
+  const handleAddToCart = (selectedEmoji, quantity) => {
+    if (!selectedEmoji) return; 
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    const existingItemIndex = cartItems.findIndex(item => item.id === selectedEmoji.id);
+  
+    if (existingItemIndex !== -1) {
+      cartItems[existingItemIndex].quantity += quantity;
+    } else {
+      cartItems.push({
+        id: selectedEmoji.id,
+        name: selectedEmoji.name,
+        price: selectedEmoji.price,
+        image: selectedEmoji.emoji?.props?.src || "",
+        quantity
+      });
+    }
+  
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    window.dispatchEvent(new Event("cartUpdated")); // This triggers the CartPage update
+  };
+ 
+  
+  // const handleAddToCart = () => {
+  //   navigate("/cart"); // ✅ Redirects to Cart Page
+  // };
+
+  const handleBuyNow = () => {
+    navigate("/cart"); // ✅ Redirects to Cart Page
+  };
 
   // Fetch data from API when "Devotional Products" is selected
   useEffect(() => {
@@ -372,17 +405,24 @@ function Dashboard({ authorized }) {
                 </div>
 
                 <div className="modal-footer d-flex justify-content-center">
-                  <button
-                    type="button"
-                    className="btn btn-secondary me-2"
-                    data-bs-dismiss="modal"
-                  >
-                    Add to Cart
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Buy Now
-                  </button>
-                </div>
+  <button
+    type="button"
+    className="btn btn-secondary me-2"
+    onClick={() => {
+      handleAddToCart(selectedEmoji, quantity);
+      alert("Product added to your cart!");
+    }}
+  >
+    Add to Cart
+  </button>
+
+  <button
+    type="button"
+    className="btn btn-primary"
+  >
+    Buy Now
+  </button>
+</div>
               </>
             )}
           </div>

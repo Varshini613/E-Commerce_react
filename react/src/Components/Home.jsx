@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaGoogle, FaBehance } from "react-icons/fa";
@@ -21,21 +21,29 @@ const latestProducts = [
   { id: 6, name: "Cadbury oreo", price: "₹245", image: "https://m.media-amazon.com/images/I/61v+M74dWoL._AC_UL480_FMwebp_QL65_.jpg" },
   { id: 7, name: "Britannia Milk Bikis Milk Cream Biscuits", price: "₹100", image: "https://m.media-amazon.com/images/I/71Wp9Qnc4vL._AC_UL480_FMwebp_QL65_.jpg" },
   { id: 8, name: "Sunfeast Mom's Magic", price: "₹141", image: "https://m.media-amazon.com/images/I/810ZSi0ry+L._AC_UL480_FMwebp_QL65_.jpg" },
-
 ];
 
 function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate(); // ✅ React Router hook for navigation
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
+  };
+
+  const handleAddToCart = () => {
+    navigate("/products"); // ✅ Redirects to Cart Page
+  };
+
+  const handleBuyNow = () => {
+    navigate("/products"); // ✅ Redirects to Cart Page
   };
 
   return (
     <div>
       {/* Banner Section */}
       <div className="w-100 px-0">
-        <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="1000">
+        <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="2000">
           <div className="carousel-inner rounded shadow">
             {bannerImages.map((img, index) => (
               <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
@@ -43,6 +51,8 @@ function Home() {
               </div>
             ))}
           </div>
+
+          {/* Carousel Controls */}
           <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
             <span className="carousel-control-prev-icon"></span>
           </button>
@@ -73,7 +83,7 @@ function Home() {
 
       {/* Modal for Product Details */}
       {selectedProduct && (
-        <div className="modal fade" id="productModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal fade show d-block" id="productModal" tabIndex="-1" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
@@ -86,19 +96,13 @@ function Home() {
                 <p>High-quality {selectedProduct.name} for your everyday needs.</p>
               </div>
               <div className="modal-footer d-flex justify-content-center">
-  <button className="btn btn-success mx-2">Buy Now</button>
-  <button className="btn btn-warning mx-2">Add to Cart</button>
-  
-</div>
-
+                <button className="btn btn-success mx-2" onClick={handleBuyNow}>Buy Now</button>
+                <button className="btn btn-warning mx-2" onClick={handleAddToCart}>Add to Cart</button>
+              </div>
             </div>
           </div>
         </div>
       )}
-
-   
-      
-
     </div>
   );
 }

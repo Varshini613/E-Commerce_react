@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Checkout = () => {
   const location = useLocation();
   // Get cart items from location state or fallback to empty array
-//  
-
-const cartItems = location.state?.cartItems || [];
-const totalPrice = location.state?.totalPrice || 
-  cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-//   );
+  const cartItems = location.state?.cartItems || [];
+  const baseTotalPrice = location.state?.totalPrice || cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    address: ''
+    address: '',
+    dispatchOption: '',
+    shippingCost: 0,  // Add shipping cost to formData
   });
   const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,13 +32,20 @@ const totalPrice = location.state?.totalPrice ||
     } else {
       // Handle final submission/payment
       alert('Order placed successfully!');
+      
+      // Now clear the cart only after successful order placement
+      localStorage.removeItem("cart");
+      window.dispatchEvent(new Event("cartUpdated"));
+  
       navigate('/');
     }
   };
 
+  // Calculate the total price including shipping cost
+  const updatedTotalPrice = baseTotalPrice + formData.shippingCost;
+
   return (
     <div className="container mt-4">
-
       {/* Breadcrumb Navigation */}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -53,16 +57,16 @@ const totalPrice = location.state?.totalPrice ||
 
       {/* Checkout Steps Header */}
       <div className="checkout-steps mb-4">
-        <div className="d-flex justify-content-between">
-          <div className={`step ${step >= 1 ? 'active' : ''}`}>
+        <div className="row justify-content-between">
+          <div className={`col step ${step >= 1 ? 'active' : ''} text-center py-3`}>
             <div className="step-number">1</div>
             <div className="step-title">Address</div>
           </div>
-          <div className={`step ${step >= 2 ? 'active' : ''}`}>
+          <div className={`col step ${step >= 2 ? 'active' : ''} text-center py-3`}>
             <div className="step-number">2</div>
             <div className="step-title">Dispatch</div>
           </div>
-          <div className={`step ${step >= 3 ? 'active' : ''}`}>
+          <div className={`col step ${step >= 3 ? 'active' : ''} text-center py-3`}>
             <div className="step-number">3</div>
             <div className="step-title">Review & Payment</div>
           </div>
@@ -99,7 +103,7 @@ const totalPrice = location.state?.totalPrice ||
                     />
                   </div>
                 </div>
-                
+
                 <div className="mb-3">
                   <label className="form-label">Email *</label>
                   <input
@@ -111,7 +115,7 @@ const totalPrice = location.state?.totalPrice ||
                     required
                   />
                 </div>
-                
+
                 <div className="mb-3">
                   <label className="form-label">Address *</label>
                   <textarea
@@ -123,7 +127,7 @@ const totalPrice = location.state?.totalPrice ||
                     rows="3"
                   />
                 </div>
-                
+
                 <div className="d-flex justify-content-end">
                   <button type="submit" className="btn btn-primary">
                     Continue
@@ -135,7 +139,8 @@ const totalPrice = location.state?.totalPrice ||
 
           {step === 2 && (
             <div className="dispatch-options">
-              <h4 className="mb-4">Dispatch Options</h4>
+              <h4 className="mb-4">Shipping Methods</h4>
+
               <div className="card mb-3">
                 <div className="card-body">
                   <div className="form-check">
@@ -143,25 +148,48 @@ const totalPrice = location.state?.totalPrice ||
                       className="form-check-input"
                       type="radio"
                       name="dispatchOption"
-                      id="standard"
-                      defaultChecked
+                      id="postal"
+                      value="India Postal"
+                      checked={formData.dispatchOption === "India Postal"}
+                      onChange={(e) => setFormData(prev => ({ ...prev, dispatchOption: e.target.value, shippingCost: 70 }))}
                     />
-                    <label className="form-check-label" htmlFor="standard">
-                      Standard Delivery (3-5 business days)
+                    <label className="form-check-label" htmlFor="postal">
+                      South India - India Postal (₹70.00, Estimated delivery 2-3 days)
                     </label>
                   </div>
                 </div>
               </div>
+
+              <div className="card mb-3">
+                <div className="card-body">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="dispatchOption"
+                      id="professional"
+                      value="Professional Courier"
+                      checked={formData.dispatchOption === "Professional Courier"}
+                      onChange={(e) => setFormData(prev => ({ ...prev, dispatchOption: e.target.value, shippingCost: 70 }))}
+                    />
+                    <label className="form-check-label" htmlFor="professional">
+                      South India - Professional Courier (₹70.00, Estimated delivery 2-3 working days)
+                    </label>
+                  </div>
+                </div>
+              </div>
+
               <div className="d-flex justify-content-between">
-                <button 
+                <button
                   className="btn btn-outline-secondary"
                   onClick={() => setStep(1)}
                 >
                   Back
                 </button>
-                <button 
+                <button
                   className="btn btn-primary"
                   onClick={() => setStep(3)}
+                  disabled={!formData.dispatchOption}  // Disable button if no option is selected
                 >
                   Continue
                 </button>
@@ -180,22 +208,22 @@ const totalPrice = location.state?.totalPrice ||
                   <p>{formData.email}</p>
                 </div>
               </div>
-              
+
               <div className="card mb-3">
                 <div className="card-body">
                   <h5>Dispatch Method</h5>
-                  <p>Standard Delivery (3-5 business days)</p>
+                  <p>{formData.dispatchOption}</p>
                 </div>
               </div>
-              
+
               <div className="d-flex justify-content-between">
-                <button 
+                <button
                   className="btn btn-outline-secondary"
                   onClick={() => setStep(2)}
                 >
                   Back
                 </button>
-                <button 
+                <button
                   className="btn btn-success"
                   onClick={handleSubmit}
                 >
@@ -205,9 +233,7 @@ const totalPrice = location.state?.totalPrice ||
             </div>
           )}
         </div>
-        
 
-        
         <div className="col-md-4">
           <div className="card">
             <div className="card-body">
@@ -216,14 +242,22 @@ const totalPrice = location.state?.totalPrice ||
               {/* Display actual cart items count */}
               <div className="d-flex justify-content-between mb-2">
                 <span>Subtotal ({cartItems.length} Items)</span>
-                <span>₹{totalPrice.toFixed(2)}</span>
+                <span>₹{baseTotalPrice.toFixed(2)}</span>
               </div>
               
               <hr />
-              
+
+              {/* Display shipping cost */}
+              <div className="d-flex justify-content-between">
+                <span>Shipping</span>
+                <span>₹{formData.shippingCost.toFixed(2)}</span>
+              </div>
+
+              <hr />
+
               <div className="d-flex justify-content-between fw-bold">
                 <span>Total</span>
-                <span>₹{totalPrice.toFixed(2)}</span>
+                <span>₹{updatedTotalPrice.toFixed(2)}</span>
               </div>
             </div>
           </div>

@@ -25,43 +25,47 @@ const latestProducts = [
 
 function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const navigate = useNavigate(); // ✅ React Router hook for navigation
+  const navigate = useNavigate(); 
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
   };
 
   const handleAddToCart = () => {
-    navigate("/products"); // ✅ Redirects to Cart Page
+    navigate("/products"); 
   };
 
   const handleBuyNow = () => {
-    navigate("/products"); // ✅ Redirects to Cart Page
+    navigate("/products");
   };
 
   return (
     <div>
-      {/* Banner Section */}
-      <div className="w-100 px-0">
-        <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="2000">
-          <div className="carousel-inner rounded shadow">
-            {bannerImages.map((img, index) => (
-              <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
-                <img src={img} className="d-block w-100" alt={`Banner ${index + 1}`} style={{ width: "100vw", height: "300px", objectFit: "cover" }} />
-              </div>
-            ))}
-          </div>
-
-          {/* Carousel Controls */}
-          <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon"></span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon"></span>
-          </button>
+          <div className="w-100 px-0">
+      <div id="bannerCarousel" className="carousel slide mb-5" data-bs-ride="carousel">
+        <div className="carousel-inner rounded shadow">
+          {bannerImages.map((img, index) => (
+            <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
+              <img
+                src={img}
+                className="d-block w-100"
+                alt={`Banner ${index + 1}`}
+                style={{ width: "100vw", height: "300px", objectFit: "cover" }}
+              />
+            </div>
+          ))}
         </div>
-      </div>
 
+        {/* Carousel Controls */}
+        <button className="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon"></span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+          <span className="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+ 
       {/* Latest Products Section */}
       <h2 className="text-center mb-5 display-6 fw-bold">Latest Products</h2>
       <div className="row g-4">

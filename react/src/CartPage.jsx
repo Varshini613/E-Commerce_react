@@ -43,9 +43,10 @@ const CartPage = () => {
   }, []);
 
   const updateQuantity = (id, amount) => {
-    const updatedCart = cartItems.map(item =>
-      item.id === id ? { ...item, quantity: Math.max(item.quantity + amount, 1) } : item
+    let updatedCart = cartItems.map(item =>
+      item.id === id ? { ...item, quantity: Math.max(item.quantity + amount, 0) } : item
     );
+    updatedCart = updatedCart.filter(item => item.quantity > 0);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     window.dispatchEvent(new Event("cartUpdated"));
@@ -58,20 +59,23 @@ const CartPage = () => {
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
- 
-
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty!");
       return;
     }
-    
+
     navigate('/checkout', { 
       state: { 
         cartItems: cartItems,
         totalPrice: totalPrice
       } 
     });
+    
+    // localStorage.removeItem("cart"); // Clear cart after successful order placement
+    // window.dispatchEvent(new Event("cartUpdated"));
+    
+   
   };
 
   return (
@@ -82,7 +86,7 @@ const CartPage = () => {
           <p>Your cart is empty.</p>
           <button 
             className="btn btn-primary"
-            onClick={() => navigate("/")} // Adjust the path as needed
+            onClick={() => navigate("/products")} // Adjust the path as needed
           >
             Continue Shopping
           </button>
@@ -126,24 +130,24 @@ const CartPage = () => {
             ))}
           </div>
 
-          <div className="card mb-3">
-            <div className="card-body">
-              <h5 className="card-title">Order Summary</h5>
-              <div className="d-flex justify-content-between">
-                <span>Subtotal:</span>
-                <span>₹{totalPrice}</span>
-              </div>
-              <div className="d-flex justify-content-between">
-                <span>Shipping:</span>
-                <span>₹0</span> {/* Adjust as needed */}
-              </div>
-              <hr />
-              <div className="d-flex justify-content-between fw-bold">
-                <span>Total:</span>
-                <span>₹{totalPrice}</span>
-              </div>
-            </div>
-          </div>
+          <div className="card mb-3 ms-auto" style={{ width: "18rem" }}>
+  <div className="card-body">
+    <h5 className="card-title">Order Summary</h5>
+    <div className="d-flex justify-content-between">
+      <span>Subtotal:</span>
+      <span>₹{totalPrice}</span>
+    </div>
+    <div className="d-flex justify-content-between">
+      <span>Shipping:</span>
+      <span>₹0</span> {/* Adjust as needed */}
+    </div>
+    <hr />
+    <div className="d-flex justify-content-between fw-bold">
+      <span>Total:</span>
+      <span>₹{totalPrice}</span>
+    </div>
+  </div>
+</div>
 
           <div className="d-flex justify-content-between">
             <button 

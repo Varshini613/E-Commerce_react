@@ -13,7 +13,7 @@ function Dashboard({ authorized }) {
   const [brand, setBrand] = useState("All");
   const [discount, setDiscount] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [products, setProducts] = useState(emojiData); // new state variable for products
+  const [products, setProducts] = useState(emojiData); 
   const [loading, setLoading] = useState(false);
   const productsPerPage = 9;
 
@@ -80,13 +80,13 @@ function Dashboard({ authorized }) {
           // Transform the API data to match your UI structure
           const transformedData = data.map(product => ({
             id: product.id,
-            name: product.english_title,
-            meaning: product.english_desc || product.description || '',
+            name: product.product_url,
+            meaning: `₹${product.pro_amt}`,
             price: product.price,
             discount: product.discount,
-            category: "Devotional Products", // setting a string category
+            category: "Devotional Products", 
             emoji: { props: { src: product.images[0]?.src || "" } },
-            extraInfo: product.desc_default || '',
+            extraInfo:product.type,
             additionalImages: product.images ? product.images.map(img => img.src) : [],
             video: (Array.isArray(product.video_url) && product.video_url[0]) || "",
           }));

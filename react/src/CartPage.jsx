@@ -95,38 +95,46 @@ const CartPage = () => {
         <>
           <div className="cart-items mb-4">
             {cartItems.map(item => (
-              <div key={item.id} className="cart-item d-flex align-items-center justify-content-between border p-3 mb-2">
-                <img src={item.image} alt={item.name} width="80" height="80" />
-                <div>
-                  <p>{item.name}</p>
-                  <p>₹{item.price}</p>
-                </div>
-                <div>
-                  <button 
-                    className="btn btn-sm btn-outline-secondary" 
-                    onClick={() => updateQuantity(item.id, -1)}
-                    disabled={isInitialLoad}
-                  >
-                    -
-                  </button>
-                  <span className="mx-2">{item.quantity}</span>
-                  <button 
-                    className="btn btn-sm btn-outline-secondary" 
-                    onClick={() => updateQuantity(item.id, 1)}
-                    disabled={isInitialLoad}
-                  >
-                    +
-                  </button>
-                </div>
-                <p>₹{item.price * item.quantity}</p>
+              <div 
+              key={item.id} 
+              className="cart-item d-flex align-items-center justify-content-between border p-3 mb-2"
+            >
+              <img src={item.image} alt={item.name} width="80" height="80" />
+              
+              <div className="flex-grow-1 ms-3">
+                <p className="mb-1">{item.name}</p>
+                <p className="mb-1 fw-bold">₹{item.price}</p>
+              </div>
+            
+              <div className="d-flex align-items-center">
                 <button 
-                  className="btn btn-danger btn-sm" 
-                  onClick={() => removeItem(item.id)}
+                  className="btn btn-sm btn-outline-secondary" 
+                  onClick={() => updateQuantity(item.id, -1)}
                   disabled={isInitialLoad}
                 >
-                  Remove
+                  -
+                </button>
+                <span className="mx-2 fw-bold">{item.quantity}</span>
+                <button 
+                  className="btn btn-sm btn-outline-secondary" 
+                  onClick={() => updateQuantity(item.id, 1)}
+                  disabled={isInitialLoad}
+                >
+                  +
                 </button>
               </div>
+            
+              <p className="fw-bold ms-4">₹{item.price * item.quantity}</p>
+            
+              <button 
+                className="btn btn-danger btn-sm ms-3" 
+                onClick={() => removeItem(item.id)}
+                disabled={isInitialLoad}
+              >
+                Remove
+              </button>
+            </div>
+            
             ))}
           </div>
 
@@ -152,7 +160,7 @@ const CartPage = () => {
           <div className="d-flex justify-content-between">
             <button 
               className="btn btn-outline-primary"
-              onClick={() => navigate("/")} // Adjust the path as needed
+              onClick={() => navigate("/products")} // Adjust the path as needed
             >
               Continue Shopping
             </button>

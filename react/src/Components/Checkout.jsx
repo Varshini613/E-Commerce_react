@@ -37,6 +37,7 @@ const Checkout = () => {
       // Now clear the cart only after successful order placement
       // localStorage.removeItem("cart");
       // window.dispatchEvent(new Event("cartUpdated"));
+      // navigate('/products');
   
      
     }
@@ -248,13 +249,14 @@ const Checkout = () => {
       justifyContent: "center",
       alignItems: "center",
       zIndex: 1050,
+      animation: "fadeIn 0.3s",
     }}
   >
     <div
       style={{
         background: "#fff",
         padding: "30px",
-        borderRadius: "20px",
+        borderRadius: "15px",
         width: "90%",
         maxWidth: "500px",
         textAlign: "center",
@@ -280,82 +282,108 @@ const Checkout = () => {
         &times;
       </button>
 
-      <h3 style={{ marginBottom: "20px", fontSize: "20px" }}>
+      <h3 style={{ marginBottom: "20px", fontSize: "22px", fontWeight: "500" }}>
         Choose Your Payment Method
       </h3>
 
-      {/* Payment Dropdown */}
+      {/* Payment Method Dropdown */}
       <select
         className="form-select mb-4"
         style={{
           fontSize: "14px",
-          padding: "10px",
+          padding: "12px",
           width: "100%",
           marginBottom: "20px",
+          borderRadius: "5px",
+          border: "1px solid #ddd",
+          outline: "none",
         }}
         value={selectedMethod}
         onChange={(e) => setSelectedMethod(e.target.value)}
       >
-        <option value="">-- Select Method --</option>
-        <option value="PhonePe">Cash on Delivery</option>
+        <option value="">-- Select Payment Method --</option>
         <option value="PhonePe">PhonePe</option>
         <option value="Google Pay">Google Pay</option>
         <option value="Paytm">Paytm</option>
-        
+        <option value="Cash on Delivery">Cash on Delivery</option>
       </select>
 
-      {selectedMethod && (
+      {selectedMethod && selectedMethod !== "Cash on Delivery" && (
         <>
           <p style={{ fontSize: "16px", marginBottom: "15px" }}>
             Scan the QR code using <strong>{selectedMethod}</strong>:
           </p>
+
+          {/* Display QR code */}
           <img
-            src="data:image/png;base64,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"
+            src="data:image/png;base64,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"  // Replace with actual QR code URL or data
             alt="QR Code"
             style={{
-              maxWidth: "100%",
-              height: "auto",
-              border: "1px solid #ccc",
-              padding: "10px",
+              maxWidth: "200px",
+              width: "100%",
               borderRadius: "10px",
+              marginBottom: "20px",
             }}
           />
-          <div style={{ marginTop: "20px" }}>  
-  {/* Cash on Delivery Button */}
-  <button
-    className="btn btn-lg btn-primary mb-3"
-    onClick={() => {
-      alert("Order placed successfully with Cash on Delivery!");
-      localStorage.removeItem("cart");
-      window.dispatchEvent(new Event("cartUpdated"));
-      navigate("/");
-    }}
-  >
-     Cash on Delivery
-  </button>
 
-  <br />
-
-  {/* UPI Payment Button */}
-  <button
-    className="btn btn-lg btn-success mb-4"
-    onClick={() => {
-      alert("Order placed successfully!");
-      localStorage.removeItem("cart");
-      window.dispatchEvent(new Event("cartUpdated"));
-      setShowQRModal(false);
-      navigate("/");
-    }}
-  >
-    ✅ Payment Done (UPI)
-  </button>
-</div>
-
+          {/* UPI Payment Button */}
+          <button
+            style={{
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+              padding: "12px 20px",
+              borderRadius: "5px",
+              fontSize: "16px",
+              border: "none",
+              cursor: "pointer",
+              width: "100%",
+              marginTop: "10px",
+            }}
+            onClick={() => {
+              alert("Order placed successfully!");
+              localStorage.removeItem("cart");
+              window.dispatchEvent(new Event("cartUpdated"));
+              setShowQRModal(false);
+              navigate("/");
+            }}
+            
+          >
+            Proceed with Payment
+          </button>
         </>
+      )}
+
+      {/* Cash on Delivery Button */}
+      {selectedMethod === "Cash on Delivery" && (
+        <button
+          style={{
+            backgroundColor: "#4CAF50",
+            color: "#fff",
+            padding: "12px 20px",
+            borderRadius: "5px",
+            fontSize: "16px",
+            border: "none",
+            cursor: "pointer",
+            width: "100%",
+            marginTop: "20px",
+          }}
+          onClick={() => {
+            alert("Order placed successfully!");
+            localStorage.removeItem("cart");
+            window.dispatchEvent(new Event("cartUpdated"));
+            setShowQRModal(false);
+            navigate("/");
+          }}
+          
+        >
+          Confirm Cash on Delivery
+        </button>
       )}
     </div>
   </div>
 )}
+
+ 
 
 
 

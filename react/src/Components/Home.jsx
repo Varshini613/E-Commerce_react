@@ -26,6 +26,10 @@ const latestProducts = [
 function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const navigate = useNavigate(); 
+  const handleCloseModal = () => {
+    setSelectedProduct(null);  // This will close the modal
+  };
+  
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
@@ -85,28 +89,38 @@ function Home() {
         ))}
       </div>
 
-      {/* Modal for Product Details */}
-      {selectedProduct && (
-        <div className="modal fade show d-block" id="productModal" tabIndex="-1" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{selectedProduct.name}</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body text-center">
-                <img src={selectedProduct.image} alt={selectedProduct.name} className="img-fluid mb-3" style={{ maxHeight: "200px" }} />
-                <p className="fw-bold">{selectedProduct.price}</p>
-                <p>High-quality {selectedProduct.name} for your everyday needs.</p>
-              </div>
-              <div className="modal-footer d-flex justify-content-center">
-                <button className="btn btn-success mx-2" onClick={handleBuyNow}>Buy Now</button>
-                <button className="btn btn-warning mx-2" onClick={handleAddToCart}>Add to Cart</button>
-              </div>
-            </div>
-          </div>
+    {/* Modal for Product Details */}
+{selectedProduct && (
+  <div className="modal fade show d-block" id="productModal" tabIndex="-1" aria-hidden="true">
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">{selectedProduct.name}</h5>
+
+          {/* X Button to Close Modal */}
+          <button
+            type="button"
+            className="btn-close"
+            onClick={handleCloseModal}
+            aria-label="Close"
+          ></button>
         </div>
-      )}
+
+        <div className="modal-body text-center">
+          <img src={selectedProduct.image} alt={selectedProduct.name} className="img-fluid mb-3" style={{ maxHeight: "200px" }} />
+          <p className="fw-bold">{selectedProduct.price}</p>
+          <p>High-quality {selectedProduct.name} for your everyday needs.</p>
+        </div>
+
+        <div className="modal-footer d-flex justify-content-center">
+          <button className="btn btn-success mx-2" onClick={handleBuyNow}>Buy Now</button>
+          <button className="btn btn-warning mx-2" onClick={handleAddToCart}>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

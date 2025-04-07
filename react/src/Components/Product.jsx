@@ -55,41 +55,47 @@ function Dashboard({ authorized }) {
   useEffect(() => {
     if (category === "Devotional Products") {
       setLoading(true);
-      fetch("/api/site/action", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: "categoryFilter",
-          lang_id: "1",
-          category: 14, // category id for devotional products
-          priceFilter:
-            price === "All"
-              ? 0
-              : price === "Under 500"
-              ? 1
-              : price === "500 - 1000"
-              ? 2
-              : 3, // adjust logic if needed
-          userId: authorized && authorized.userId ? authorized.userId : 8147,
-          ProId: [],
-          stock: 1,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // Transform the API data to match your UI structure
-          const transformedData = data.map(product => ({
+  
+      const fetchCategoryData = (catId) => {
+        return fetch("/api/site/action", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "categoryFilter",
+            lang_id: "1",
+            category: catId,
+            priceFilter:
+              price === "All"
+                ? 0
+                : price === "Under 500"
+                ? 1
+                : price === "500 - 1000"
+                ? 2
+                : 3,
+            userId: authorized?.userId || 8147,
+            ProId: [],
+            stock: 1,
+          }),
+        }).then((res) => res.json());
+      };
+  
+      Promise.all([fetchCategoryData(10), fetchCategoryData(14)])
+        .then(([data1, data2]) => {
+          const allData = [...data1, ...data2];
+  
+          const transformedData = allData.map(product => ({
             id: product.id,
             name: product.product_url,
             meaning: `₹${product.pro_amt}`,
             price: product.price,
             discount: product.discount,
-            category: "Devotional Products", 
+            category: "Devotional Products",
             emoji: { props: { src: product.images[0]?.src || "" } },
-            extraInfo:product.type,
+            extraInfo: product.type,
             additionalImages: product.images ? product.images.map(img => img.src) : [],
             video: (Array.isArray(product.video_url) && product.video_url[0]) || "",
           }));
+  
           setProducts(transformedData);
           setLoading(false);
         })
@@ -97,6 +103,7 @@ function Dashboard({ authorized }) {
           console.error("Error fetching devotional products:", error);
           setLoading(false);
         });
+  
     } else {
       setProducts(emojiData);
     }

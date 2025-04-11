@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Checkout from "./Components/checkout";
+import Dashboard from "./Components/Product";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -41,6 +42,21 @@ const CartPage = () => {
       window.removeEventListener("cartUpdated", handleCartUpdated);
     };
   }, []);
+
+
+  // Add this state and effect to CartPage.js
+const [cartVersion, setCartVersion] = useState(0);
+
+useEffect(() => {
+  const handleCartUpdated = () => {
+    const updatedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(updatedCart);
+    setCartVersion(v => v + 1); // Force re-render
+  };
+
+  window.addEventListener("cartUpdated", handleCartUpdated);
+  return () => window.removeEventListener("cartUpdated", handleCartUpdated);
+}, []);
 
   const updateQuantity = (id, amount) => {
     let updatedCart = cartItems.map(item =>

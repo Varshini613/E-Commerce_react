@@ -3,6 +3,8 @@ import emojiData from "../emojipedia";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CartPage from "../CartPage";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Dashboard({ authorized }) {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -20,35 +22,73 @@ function Dashboard({ authorized }) {
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
   const navigate = useNavigate(); 
-  const handleAddToCart = (selectedEmoji, quantity) => {
-    if (!selectedEmoji) return; 
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  
-    const existingItemIndex = cartItems.findIndex(item => item.id === selectedEmoji.id);
-  
-    if (existingItemIndex !== -1) {
-      cartItems[existingItemIndex].quantity += quantity;
-    } else {
-      cartItems.push({
-        id: selectedEmoji.id,
-        name: selectedEmoji.name,
-        price: selectedEmoji.price,
-        image: selectedEmoji.emoji?.props?.src || "",
-        quantity
-      });
-    }
-  
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-    window.dispatchEvent(new Event("cartUpdated")); // This triggers the CartPage update
+  const handleCloseModal = () => {
+    setSelectedEmoji(null);
+    setQuantity(1);
   };
- 
-  
-  // const handleAddToCart = () => {
-  //   navigate("/cart"); // ✅ Redirects to Cart Page
-  // };
 
-  const handleBuyNow = () => {
-    navigate("/cart"); // ✅ Redirects to Cart Page
+
+  const handleAddToCart = (product, qty = 1) => {
+    if (!product) return;
+    
+    try {
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      
+      const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+  
+      if (existingItemIndex !== -1) {
+        cartItems[existingItemIndex].quantity += qty;
+        toast.info(`Quantity updated for ${product.name} in your cart!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        cartItems.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.emoji?.props?.src || product.image,
+          quantity: qty
+        });
+        toast.success(`${product.name} added to your cart!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+  
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      window.dispatchEvent(new Event("cartUpdated"));
+
+      
+      return true; // Return success status
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("Failed to add item to cart");
+      return false;
+    }
+  };
+  
+  const handleBuyNow = async (product) => {
+    // First add to cart
+    const success = handleAddToCart(product, quantity);
+    
+    if (success) {
+      // Close the modal
+      handleCloseModal();
+      
+      // Then navigate to cart
+      navigate("/cart");
+    }
   };
 
   // Fetch data from API when "Devotional Products" is selected
@@ -136,6 +176,19 @@ function Dashboard({ authorized }) {
 
   return (
     <div className="container my-4">
+            <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      
       <div className="row">
         {/* Left Sidebar Filters */}
         <div className="col-md-3">
@@ -412,24 +465,22 @@ function Dashboard({ authorized }) {
                 </div>
 
                 <div className="modal-footer d-flex justify-content-center">
-  <button
-    type="button"
-    className="btn btn-secondary me-2"
-    onClick={() => {
-      handleAddToCart(selectedEmoji, quantity);
-      alert("Product added to your cart!");
-    }}
-  >
-    Add to Cart
-  </button>
+        <button
+          type="button"
+          className="btn btn-secondary me-2"
+          onClick={() => handleAddToCart(selectedEmoji, quantity)}
+        >
+          Add to Cart
+        </button>
 
-  <button
-    type="button"
-    className="btn btn-primary"
-  >
-    Buy Now
-  </button>
-</div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => handleBuyNow(selectedEmoji)}
+        >
+          Buy Now
+        </button>
+      </div>
               </>
             )}
           </div>

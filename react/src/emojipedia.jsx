@@ -48,7 +48,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/61S-s1Bb6JL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/61BpQRxlWNL._SX679_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/s9eibMqNfaU"
         
       
     },
@@ -67,7 +67,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/91sysS5+fgL._SL1500_.jpg",
           "https://m.media-amazon.com/images/I/710O4EmphyL._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/PX2-IUxTPwo"
 
     },
     {
@@ -85,7 +85,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/91LV5-pWIgL._SL1500_.jpg",
           "https://m.media-amazon.com/images/I/71wmRd0g+4L._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/r9tWV0XurEA"
 
 
     },
@@ -104,7 +104,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/717PnAHHYxL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/61u-BPKhghL._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/Dz1SEqhlgPM"
 
     },
     {
@@ -122,7 +122,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/71xbwvV65kL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/81eWzK4xFyL._SY879_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/RKCc7akmbMU"
     },
     {
       id: 8,
@@ -139,7 +139,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/71cjLcT9KqL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/618LtExQP3L._SX679_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/ROzQhqzIauw"
 
     },
     {
@@ -157,7 +157,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/61Pvb0Rh0yL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/61qcX0W2d9L._SX679_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/PtbSjeCq_TQ"
 
 
     },
@@ -176,7 +176,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/81Dz3r4zMmL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/71tId5WBSOL._SX679_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/1ud-OFguXY4"
 
     },
     {
@@ -194,7 +194,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/71ocwJ8S+jL._SL1500_.jpg",
           "https://m.media-amazon.com/images/I/715sWq+pwHL._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/lD4mjPrpYwo"
 
     },
     {
@@ -212,7 +212,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/912hElI+AaL._SL1500_.jpg",
           "https://m.media-amazon.com/images/I/81v1VxLOm3L._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/KHxWjRfYoNU"
 
 
     },
@@ -231,7 +231,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/71DhvrRKXPL._SX679_.jpg",
           "https://m.media-amazon.com/images/I/61a30EbMUAL._SX679_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/2keHAOgQthA"
     },
     {
       id: 14,
@@ -247,7 +247,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/71f8ZwvDXZL._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/71ZxoU11OgL._SL1500_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/HZa2eLyrtoQ"
 
     },
     {
@@ -265,7 +265,7 @@ const emojipedia = [
           "https://m.media-amazon.com/images/I/91YDBu8n9nL._SL1500_.jpg",
           "https://m.media-amazon.com/images/I/81WvvTw5IdL._SL1500_.jpg"
         ],
-        video: "https://www.example.com/sample-video2.mp4"
+        video: "https://www.youtube.com/embed/_-oBgbiRlL8"
 
     },
     {
@@ -299,7 +299,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/81PmcAC0bBL._SX679_.jpg",
         "https://m.media-amazon.com/images/I/71ZJmyXxi8L._SX679_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/-sVbkGNXjag"
 
     },
     {
@@ -316,7 +316,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/61omzFQ5WnL._SL1200_.jpg",
         "https://m.media-amazon.com/images/I/71EdPu8oBHL._SL1158_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/DkbUjWQ4pvI"
 
     },
     {

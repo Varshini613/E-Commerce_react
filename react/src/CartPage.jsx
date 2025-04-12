@@ -65,14 +65,14 @@ useEffect(() => {
     updatedCart = updatedCart.filter(item => item.quantity > 0);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event("cartUpdated"));
+    // window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const removeItem = (id) => {
     const updatedCart = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event("cartUpdated"));
+    // window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const handleCheckout = () => {
@@ -115,7 +115,11 @@ useEffect(() => {
               key={item.id} 
               className="cart-item d-flex align-items-center justify-content-between border p-3 mb-2"
             >
-              <img src={item.image} alt={item.name} width="80" height="80" />
+              <img src={item.image} alt={item.name}  style={{
+    width: '10%',
+    height: '100px',
+   
+  }} />
               
               <div className="flex-grow-1 ms-3">
                 <p className="mb-1">{item.name}</p>

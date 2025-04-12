@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emojiData from "../emojipedia";
 import "bootstrap/dist/css/bootstrap.min.css";
-import CartPage from "../CartPage";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,74 +21,67 @@ function Dashboard({ authorized }) {
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
   const navigate = useNavigate(); 
-  const handleCloseModal = () => {
-    setSelectedEmoji(null);
-    setQuantity(1);
-  };
-
-
-  const handleAddToCart = (product, qty = 1) => {
-    if (!product) return;
+ 
+  const handleAddToCart = (selectedEmoji, quantity) => {
+    if (!selectedEmoji) return;
     
     try {
       const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
       
-      const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+      const existingItemIndex = cartItems.findIndex(item => item.id === selectedEmoji.id);
   
       if (existingItemIndex !== -1) {
-        cartItems[existingItemIndex].quantity += qty;
-        toast.info(`Quantity updated for ${product.name} in your cart!`, {
+        cartItems[existingItemIndex].quantity += quantity;
+        toast.success(`${selectedEmoji.name} quantity updated in cart!`, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
         });
       } else {
         cartItems.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.emoji?.props?.src || product.image,
-          quantity: qty
+          id: selectedEmoji.id,
+          name: selectedEmoji.name,
+          price: selectedEmoji.price,
+          image: selectedEmoji.emoji?.props?.src || "",
+          quantity
         });
-        toast.success(`${product.name} added to your cart!`, {
+        toast.success(`${selectedEmoji.name} added to cart!`, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
         });
       }
   
       localStorage.setItem("cart", JSON.stringify(cartItems));
       window.dispatchEvent(new Event("cartUpdated"));
-
       
-      return true; // Return success status
     } catch (error) {
+      toast.error("Failed to add item to cart", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
       console.error("Error adding to cart:", error);
-      toast.error("Failed to add item to cart");
-      return false;
     }
+  };
+
+  const handleBuyNow = (selectedEmoji, quantity) => {
+    handleAddToCart(selectedEmoji, quantity);
+    navigate("/cart");
+    setTimeout(() => {
+    window.location.reload();
+    });
   };
   
-  const handleBuyNow = async (product) => {
-    // First add to cart
-    const success = handleAddToCart(product, quantity);
-    
-    if (success) {
-      // Close the modal
-      handleCloseModal();
-      
-      // Then navigate to cart
-      navigate("/cart");
-    }
-  };
 
   // Fetch data from API when "Devotional Products" is selected
   useEffect(() => {
@@ -176,7 +168,7 @@ function Dashboard({ authorized }) {
 
   return (
     <div className="container my-4">
-            <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -186,9 +178,7 @@ function Dashboard({ authorized }) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
       />
-      
       <div className="row">
         {/* Left Sidebar Filters */}
         <div className="col-md-3">
@@ -321,11 +311,25 @@ function Dashboard({ authorized }) {
                           ></p>
                         </div>
                         <div className="d-grid gap-2">
-                          <button className="btn btn-primary btn-sm w-100">Buy Now</button>
-                          <button className="btn btn-success text-white btn-sm w-100">
-                            Add to Cart
-                          </button>
-                        </div>
+  <button 
+    className="btn btn-primary btn-sm w-100"
+    onClick={(e) => {
+      e.stopPropagation();
+      handleBuyNow(emoji, 1); // Default quantity 1 for quick buy
+    }}
+  >
+    Buy Now
+  </button>
+  <button 
+    className="btn btn-success text-white btn-sm w-100"
+    onClick={(e) => {
+      e.stopPropagation();
+      handleAddToCart(emoji, 1); // Default quantity 1 for quick add
+    }}
+  >
+    Add to Cart
+  </button>
+</div>
                       </div>
                     </div>
                   </div>
@@ -476,11 +480,12 @@ function Dashboard({ authorized }) {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => handleBuyNow(selectedEmoji)}
+          onClick={() => handleBuyNow(selectedEmoji, quantity)}
         >
           Buy Now
         </button>
       </div>
+
               </>
             )}
           </div>

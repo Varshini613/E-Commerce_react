@@ -75,6 +75,22 @@ const [showBillingDetails, setShowBillingDetails] = useState(false);
           </div>
         </div>
       </div>
+      {/* Progress Bar */}
+<div className="progress mb-4" style={{ height: '20px' }}>
+  <div
+    className="progress-bar progress-bar-striped progress-bar-animated"
+    role="progressbar"
+    style={{
+      width: `${(step / 3) * 100}%`,
+      backgroundColor: "#007bff",
+    }}
+    aria-valuenow={(step / 3) * 100}
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    Step {step} of 3
+  </div>
+</div>
 
       <div className="row">
         <div className="col-md-8">
@@ -296,24 +312,56 @@ const [showBillingDetails, setShowBillingDetails] = useState(false);
     borderRadius: "10px",
   }}
 >
-  <h4
-    style={{
-      marginBottom: "5px",
-      fontSize: "18px",
-      fontWeight: "600",
-      borderBottom: "1px solid #ccc",
-      paddingBottom: "5px",
-    }}
-  >
-    Billing Details
-  </h4>
- {cartItems.map((item, index) => (
-      <div key={index} style={{ marginBottom: "10px" }}>
-        <p>Product: {item.name}</p>
-        <p>Quantity: {item.quantity}</p>
-        <p>TotalPrice + Shipping: ₹{item.price * item.quantity+70}</p>
-      </div>
-    ))}
+<div style={{ 
+    padding: '16px',
+    border: '1px solid #eee',
+    borderRadius: '6px',
+    fontSize: '14px'
+}}>
+    <h4 style={{
+        margin: '0 0 12px 0',
+        fontSize: '15px',
+        fontWeight: '600',
+        color: '#333'
+    }}>
+        Billing Summary
+    </h4>
+    
+    <div style={{ marginBottom: '10px' }}>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '6px'
+        }}>
+            <span>Subtotal ({cartItems.length} items)</span>
+            <span>₹{baseTotalPrice.toFixed(2)}</span>
+        </div>
+        
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '6px'
+        }}>
+            <span>Shipping</span>
+            <span>₹{formData.shippingCost.toFixed(2)}</span>
+        </div>
+    </div>
+    
+    <div style={{ 
+        borderTop: '1px dashed #e0e0e0',
+        paddingTop: '10px',
+        marginTop: '10px',
+        fontWeight: '500'
+    }}>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+        }}>
+            <span>Total</span>
+            <span>₹{updatedTotalPrice.toFixed(2)}</span>
+        </div>
+    </div>
+</div>
 </div>
 
 

@@ -83,7 +83,7 @@ function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBanner((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);

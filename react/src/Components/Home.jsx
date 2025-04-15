@@ -14,6 +14,7 @@ const bannerImages = [
   "Yellow  and Black Modern Church Events Banner.png"
 ];
 
+
 function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -109,14 +110,45 @@ function Home() {
         pauseOnHover
       />
       
-      {/* Auto Sliding Banner */}
-      <div style={{ height: "300px", overflow: "hidden" }}>
+      <div
+  style={{
+    width: '100vw',           // Full screen width
+    height: '300px',
+    overflow: 'hidden',
+    position: 'relative'
+  }}
+>
+  <div
+    style={{
+      display: 'flex',
+      width: `${bannerImages.length * 100}vw`,
+      transform: `translateX(-${currentBanner * 100}vw)`,
+      transition: 'transform 1s ease-in-out'
+    }}
+  >
+    {bannerImages.map((imgSrc, index) => (
+      <div
+        key={index}
+        style={{
+          width: '100vw',       // One image takes full screen width
+          flexShrink: 0,
+          height: '300px'
+        }}
+      >
         <img
-          src={bannerImages[currentBanner]}
-          alt="Banner"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          src={imgSrc}
+          alt={`Banner ${index + 1}`}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
         />
       </div>
+    ))}
+  </div>
+</div>
+
  
       {/* Latest Products Section */}
       <div className="container py-5">

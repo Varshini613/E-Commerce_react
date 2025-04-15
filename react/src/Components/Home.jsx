@@ -11,7 +11,7 @@ const bannerImages = [
   "/Red Cream Green Vintage Illustrative Voucher Food Ticket.png",
   "/Black and Red Modern Black Friday Banner.png",
   "/Yellow and White Modern Illustrative Cyber Monday Sale Banner.png",
-  "/Yellow and Black Modern Church Events Banner.png"
+  "Yellow  and Black Modern Church Events Banner.png"
 ];
 
 function Home() {
@@ -82,17 +82,23 @@ function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentBanner((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    }, 2000);
-
+      setCurrentBanner((prevIndex) => {
+        const nextIndex = prevIndex === bannerImages.length - 1 ? 0 : prevIndex + 1;
+        console.log("Showing banner index:", nextIndex);
+        return nextIndex;
+      });
+    }, 3000);
+  
     return () => clearInterval(interval);
   }, []);
+  
 
   return (
     <div className="container-fluid p-0">
       {/* Toast Container */}
       <ToastContainer
         position="top-right"
+        toastStyle={{ marginTop: "60px" }}
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}

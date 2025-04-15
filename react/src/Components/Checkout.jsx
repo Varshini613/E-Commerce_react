@@ -75,10 +75,10 @@ const [showBillingDetails, setShowBillingDetails] = useState(false);
           </div>
         </div>
       </div>
-      {/* Progress Bar */}
+{/* Progress Bar */}
 <div className="progress mb-4" style={{ height: '20px' }}>
   <div
-    className="progress-bar progress-bar-striped progress-bar-animated"
+    className="progress-bar"
     role="progressbar"
     style={{
       width: `${(step / 3) * 100}%`,
@@ -91,6 +91,7 @@ const [showBillingDetails, setShowBillingDetails] = useState(false);
     Step {step} of 3
   </div>
 </div>
+
 
       <div className="row">
         <div className="col-md-8">

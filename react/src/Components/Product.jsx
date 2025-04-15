@@ -170,6 +170,7 @@ function Dashboard({ authorized }) {
     <div className="container my-4">
        <ToastContainer
         position="top-right"
+        toastStyle={{ marginTop: "60px" }}
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}

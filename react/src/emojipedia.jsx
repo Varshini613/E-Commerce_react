@@ -333,7 +333,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/81vz+jckNtL._SX679_.jpg",
         "https://m.media-amazon.com/images/I/71b0Wlr0FHL._SX679_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/ZoI2r2NE750"
 
 
     },
@@ -351,7 +351,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/81pkEM5iJcL._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/81WpPvdbAdL._SL1500_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/UbtUvSacQ5E"
 
     },
     {
@@ -368,7 +368,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/61MFxAlI6aL._SL1000_.jpg",
         "https://m.media-amazon.com/images/I/91tkNWU+grL._SL1500_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/BxNDj6h6wNY"
 
     },
     {
@@ -385,7 +385,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/81uYM5vSySL._SL1500_.jpg",
         "https://m.media-amazon.com/images/I/71kuhGJF5-L._SL1500_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/loByR8Sf-Zc"
 
     },
     {
@@ -402,7 +402,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/91w9lnQ9b6L._SX679_.jpg",
         "https://m.media-amazon.com/images/I/914yQMLVDsL._SL1500_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/Wu-HWh6vBnU"
 
     },
     {
@@ -419,7 +419,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/71d5qdLVpNL._SL1200_.jpg",
         "https://m.media-amazon.com/images/I/61ZDbtLCd2L._SL1200_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/NXVyAl5DJyc"
 
     },
     {
@@ -436,7 +436,7 @@ const emojipedia = [
         "https://m.media-amazon.com/images/I/8117ZZ8YC-L._SX679_.jpg",
         "https://m.media-amazon.com/images/I/91Yw+xJS5gL._SX679_.jpg"
       ],
-      video: "https://www.example.com/sample-video2.mp4"
+      video: "https://www.youtube.com/embed/cQN2GxLP63Y"
 
 
     },

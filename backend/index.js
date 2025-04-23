@@ -42,7 +42,7 @@ const biscuitsList = [
   "Cadbury Chocobakes ChocLayered Cakes,(Cadbury Family Pack 200g)",
   "Wheafree Multigrain Gluten-Free Healthy Sweet and Salty (Namkeen) Jeera",
   "Sunfeast Dark Fantasy Dark Fantasy Choco Fills,Filled cookies 300g",
-  "Sunfeast Farmlite 5 Seed Digestive Biscuit,Goodness of 5 Power Seeds &",
+  "Sunfeast Farmlite 5 Seed Digestive Biscuit | High Fibre | Goodness of 5 Power Seeds & Wheat Fibre",
 ];
 
 // Safe axios request with timeout

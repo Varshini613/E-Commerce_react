@@ -73,7 +73,7 @@ const emojipedia = [
     {
       id: 5,
       emoji: <img src="https://m.media-amazon.com/images/I/9168NMg+3sL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-      name: "Sunfeast Farmlite 5 Seed Digestive Biscuit,Goodness of 5 Power Seeds &",
+      name: "Sunfeast Farmlite 5 Seed Digestive Biscuit | High Fibre | Goodness of 5 Power Seeds & Wheat Fibre",
       meaning:
         "Price : ₹100 (₹12.50/100 g) <br/> M.R.P: ₹2̶4̶0̶ (58% off)",
         category:"Biscuits",

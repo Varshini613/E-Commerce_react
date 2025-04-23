@@ -171,12 +171,13 @@ function Dashboard({ authorized }) {
   });
 
   const getScrapedData = (productName) => {
+    // Ensuring that the product name from scraped data matches exactly with the selected product
     const match = scrapedPrices.find(p =>
-      productName.toLowerCase().includes(p.name.toLowerCase().split(" ")[0])
+      productName.toLowerCase() === p.name.toLowerCase()
     );
-    return match?.amazon || match?.flipkart || null;
+    return match ? match.amazon : null; // Returns Amazon data for the matched product
   };
-
+  
   
 
   // Pagination calculations

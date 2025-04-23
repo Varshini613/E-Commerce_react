@@ -21,8 +21,26 @@ const Register = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light"
+    style={{ 
+      backgroundImage: "url('shopping-bag-cart.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
+      <div
+  className="card p-4 shadow-lg"
+  style={{
+    width: "400px",
+    backgroundColor: "rgba(255, 255, 255, 0.5)", // Slight white
+    borderRadius: "10px"
+  }}
+>
+
         {/* Register Form Header */}
         <h2 className="text-center mb-4">Register</h2>
 

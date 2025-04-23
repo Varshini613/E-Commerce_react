@@ -107,41 +107,41 @@ const emojipedia = [
         video: "https://www.youtube.com/embed/Dz1SEqhlgPM"
 
     },
-    // {
-    //   id: 7,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/61jGTpWTr8L._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Karachi Bakery Osmania Biscuits, 400g",
-    //   meaning:
-    //     "Price : ₹145 (₹36.25/100 g) <br/> M.R.P: ₹1̶8̶0̶ (19% off)",
-    //     category:"Biscuits",
-    //     extraInfo: "Traditional Hyderabad special biscuits with a rich, buttery taste and a perfect blend of sweet and salty flavors.",
-    //     price :  "145",
-    //     brand : "Karachi Bakery",
-    //     discount : "19",
-    //     additionalImages: [
-    //       "https://m.media-amazon.com/images/I/71xbwvV65kL._SX679_.jpg",
-    //       "https://m.media-amazon.com/images/I/81eWzK4xFyL._SY879_.jpg"
-    //     ],
-    //     video: "https://www.youtube.com/embed/RKCc7akmbMU"
-    // },
-    // {
-    //   id: 8,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/71-DjDIiT7L._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Unibic Cashew and Badam Cookies, 450g (Pack of 2)",
-    //   meaning:
-    //     "Price : ₹150 (₹15/100 g) <br/> M.R.P: ₹3̶2̶0̶  (53% off)",
-    //     category:"Biscuits",
-    //     extraInfo: "Crunchy and rich cookies loaded with cashews and almonds, perfect for pairing with tea or coffee. No artificial preservatives.",
-    //     price :  "150",
-    //     brand : "Unibic",
-    //     discount : "53",
-    //     additionalImages: [
-    //       "https://m.media-amazon.com/images/I/71cjLcT9KqL._SX679_.jpg",
-    //       "https://m.media-amazon.com/images/I/618LtExQP3L._SX679_.jpg"
-    //     ],
-    //     video: "https://www.youtube.com/embed/ROzQhqzIauw"
+    {
+      id: 7,
+      emoji: <img src="https://m.media-amazon.com/images/I/61jGTpWTr8L._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Karachi Bakery Osmania Biscuits, 400g",
+      meaning:
+        "Price : ₹145 (₹36.25/100 g) <br/> M.R.P: ₹1̶8̶0̶ (19% off)",
+        category:"Biscuits",
+        extraInfo: "Traditional Hyderabad special biscuits with a rich, buttery taste and a perfect blend of sweet and salty flavors.",
+        price :  "145",
+        brand : "Karachi Bakery",
+        discount : "19",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71xbwvV65kL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81eWzK4xFyL._SY879_.jpg"
+        ],
+        video: "https://www.youtube.com/embed/RKCc7akmbMU"
+    },
+    {
+      id: 8,
+      emoji: <img src="https://m.media-amazon.com/images/I/71-DjDIiT7L._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Unibic Cashew and Badam Cookies, 450g (Pack of 2)",
+      meaning:
+        "Price : ₹150 (₹15/100 g) <br/> M.R.P: ₹3̶2̶0̶  (53% off)",
+        category:"Biscuits",
+        extraInfo: "Crunchy and rich cookies loaded with cashews and almonds, perfect for pairing with tea or coffee. No artificial preservatives.",
+        price :  "150",
+        brand : "Unibic",
+        discount : "53",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71cjLcT9KqL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/618LtExQP3L._SX679_.jpg"
+        ],
+        video: "https://www.youtube.com/embed/ROzQhqzIauw"
 
-    // },
+    },
     {
       id: 9,
       emoji: <img src="https://m.media-amazon.com/images/I/61BLfXsvmBL._AC_UL480_FMwebp_QL65_.jpg"></img>,
@@ -179,24 +179,24 @@ const emojipedia = [
         video: "https://www.youtube.com/embed/1ud-OFguXY4"
 
     },
-    // {
-    //   id: 11,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/71lEUySMl0L._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Unibic Choco Nut Cookies 1kg",
-    //   meaning:
-    //     "Price : ₹190 (₹1.90/100 g) <br/> M.R.P: ₹3̶8̶0̶ (50% off)",
-    //     category:"Biscuits",
-    //     extraInfo: "Delicious chocolate cookies loaded with crunchy nuts, offering a perfect balance of sweetness and crunch. Ideal for snacking and tea-time indulgence.",
-    //     price :  "190",
-    //     brand : "Unibic",
-    //     discount : "50",
-    //     additionalImages: [
-    //       "https://m.media-amazon.com/images/I/71ocwJ8S+jL._SL1500_.jpg",
-    //       "https://m.media-amazon.com/images/I/715sWq+pwHL._SL1500_.jpg"
-    //     ],
-    //     video: "https://www.youtube.com/embed/lD4mjPrpYwo"
+    {
+      id: 11,
+      emoji: <img src="https://m.media-amazon.com/images/I/71lEUySMl0L._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Unibic Choco Nut Cookies 1kg",
+      meaning:
+        "Price : ₹190 (₹1.90/100 g) <br/> M.R.P: ₹3̶8̶0̶ (50% off)",
+        category:"Biscuits",
+        extraInfo: "Delicious chocolate cookies loaded with crunchy nuts, offering a perfect balance of sweetness and crunch. Ideal for snacking and tea-time indulgence.",
+        price :  "190",
+        brand : "Unibic",
+        discount : "50",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71ocwJ8S+jL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/715sWq+pwHL._SL1500_.jpg"
+        ],
+        video: "https://www.youtube.com/embed/lD4mjPrpYwo"
 
-    // },
+    },
     {
       id: 12,
       emoji: <img src="https://m.media-amazon.com/images/I/81C2NKTF5BL._AC_UL480_FMwebp_QL65_.jpg"></img>,
@@ -216,23 +216,23 @@ const emojipedia = [
 
 
     },
-    // {
-    //   id: 13,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/71cw2JLKmvL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Parle Hide & Seek Chocolate Cookies",
-    //   meaning:
-    //     "Price : ₹51 (₹25.50/100 g) <br/> M.R.P: ₹6̶0̶ (15% off)",
-    //     category:"Biscuits",
-    //     extraInfo: "Deliciously crunchy chocolate chip cookies loaded with real chocolate chips. A perfect snack to enjoy with tea or coffee!",
-    //     price :  "51",
-    //     brand : "Parle",
-    //     discount : "15",
-    //     additionalImages: [
-    //       "https://m.media-amazon.com/images/I/71DhvrRKXPL._SX679_.jpg",
-    //       "https://m.media-amazon.com/images/I/61a30EbMUAL._SX679_.jpg"
-    //     ],
-    //     video: "https://www.youtube.com/embed/2keHAOgQthA"
-    // },
+    {
+      id: 13,
+      emoji: <img src="https://m.media-amazon.com/images/I/71cw2JLKmvL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Parle Hide & Seek Chocolate Cookies",
+      meaning:
+        "Price : ₹51 (₹25.50/100 g) <br/> M.R.P: ₹6̶0̶ (15% off)",
+        category:"Biscuits",
+        extraInfo: "Deliciously crunchy chocolate chip cookies loaded with real chocolate chips. A perfect snack to enjoy with tea or coffee!",
+        price :  "51",
+        brand : "Parle",
+        discount : "15",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/71DhvrRKXPL._SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61a30EbMUAL._SX679_.jpg"
+        ],
+        video: "https://www.youtube.com/embed/2keHAOgQthA"
+    },
     {
       id: 14,
       emoji: <img src="https://m.media-amazon.com/images/I/61v+M74dWoL._AC_UL480_FMwebp_QL65_.jpg"></img>,
@@ -302,23 +302,23 @@ const emojipedia = [
       video: "https://www.youtube.com/embed/-sVbkGNXjag"
 
     },
-    // {
-    //   id: 18,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/71bufOt9zAL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Parle G Original Gluco Biscuits",
-    //    meaning:"Price : ₹91 (₹11.38/100 g) <br/> M.R.P: ₹1̶0̶0̶ (9% off)",
-    //    category:"Biscuits",
-    //    extraInfo: "A timeless classic, Parle G biscuits are rich in glucose and milk, providing instant energy and a nostalgic taste loved by generations.",
-    //    price :  "91",
-    //    brand : "Parle",
-    //    discount : "9",
-    //    additionalImages: [
-    //     "https://m.media-amazon.com/images/I/61omzFQ5WnL._SL1200_.jpg",
-    //     "https://m.media-amazon.com/images/I/71EdPu8oBHL._SL1158_.jpg"
-    //   ],
-    //   video: "https://www.youtube.com/embed/DkbUjWQ4pvI"
+    {
+      id: 18,
+      emoji: <img src="https://m.media-amazon.com/images/I/71bufOt9zAL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Parle G Original Gluco Biscuits",
+       meaning:"Price : ₹91 (₹11.38/100 g) <br/> M.R.P: ₹1̶0̶0̶ (9% off)",
+       category:"Biscuits",
+       extraInfo: "A timeless classic, Parle G biscuits are rich in glucose and milk, providing instant energy and a nostalgic taste loved by generations.",
+       price :  "91",
+       brand : "Parle",
+       discount : "9",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/61omzFQ5WnL._SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/71EdPu8oBHL._SL1158_.jpg"
+      ],
+      video: "https://www.youtube.com/embed/DkbUjWQ4pvI"
 
-    // },
+    },
     {
       id: 19,
       emoji: <img src="https://m.media-amazon.com/images/I/71Wp9Qnc4vL._AC_UL480_FMwebp_QL65_.jpg"></img>,
@@ -388,58 +388,58 @@ const emojipedia = [
       video: "https://www.youtube.com/embed/loByR8Sf-Zc"
 
     },
-    // {
-    //   id: 23,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/916aCP2ISiL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Karachi Fruit Biscuit - Premium",
-    //    meaning:"Price : ₹180 (₹45/100 g)",
-    //    category:"Biscuits",
-    //    extraInfo: "Karachi Bakery's Premium Fruit Biscuits are a delightful treat made with rich butter, dry fruits, and a unique blend of flavors. These biscuits have a melt-in-the-mouth texture with a perfect balance of crunch and sweetness.",
-    //    price :  "180",
-    //    brand : "Karachi Bakery",
-    //    discount : "0",
-    //    additionalImages: [
-    //     "https://m.media-amazon.com/images/I/91w9lnQ9b6L._SX679_.jpg",
-    //     "https://m.media-amazon.com/images/I/914yQMLVDsL._SL1500_.jpg"
-    //   ],
-    //   video: "https://www.youtube.com/embed/Wu-HWh6vBnU"
+    {
+      id: 23,
+      emoji: <img src="https://m.media-amazon.com/images/I/916aCP2ISiL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Karachi Fruit Biscuit - Premium",
+       meaning:"Price : ₹180 (₹45/100 g)",
+       category:"Biscuits",
+       extraInfo: "Karachi Bakery's Premium Fruit Biscuits are a delightful treat made with rich butter, dry fruits, and a unique blend of flavors. These biscuits have a melt-in-the-mouth texture with a perfect balance of crunch and sweetness.",
+       price :  "180",
+       brand : "Karachi Bakery",
+       discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/91w9lnQ9b6L._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/914yQMLVDsL._SL1500_.jpg"
+      ],
+      video: "https://www.youtube.com/embed/Wu-HWh6vBnU"
 
-    // },
-    // {
-    //   id: 24,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/61XIQA8n2BL._AC_UL960_FMwebp_QL65_.jpg"></img>,
-    //   name: "Diabexy Almond Cookies/Biscuits",
-    //    meaning:"Price : ₹495 (₹198/100 g)",
-    //    category:"Biscuits",
-    //    extraInfo: "Diabexy Almond Cookies are specially crafted for individuals managing their blood sugar levels. Made with **low glycemic index ingredients**, these cookies are **sugar-free, high in fiber, and rich in protein**.",
-    //    price :  "495",
-    //    brand : "Diabexy",
-    //    discount : "0",
-    //    additionalImages: [
-    //     "https://m.media-amazon.com/images/I/71d5qdLVpNL._SL1200_.jpg",
-    //     "https://m.media-amazon.com/images/I/61ZDbtLCd2L._SL1200_.jpg"
-    //   ],
-    //   video: "https://www.youtube.com/embed/NXVyAl5DJyc"
+    },
+    {
+      id: 24,
+      emoji: <img src="https://m.media-amazon.com/images/I/61XIQA8n2BL._AC_UL960_FMwebp_QL65_.jpg"></img>,
+      name: "Diabexy Almond Cookies/Biscuits",
+       meaning:"Price : ₹495 (₹198/100 g)",
+       category:"Biscuits",
+       extraInfo: "Diabexy Almond Cookies are specially crafted for individuals managing their blood sugar levels. Made with **low glycemic index ingredients**, these cookies are **sugar-free, high in fiber, and rich in protein**.",
+       price :  "495",
+       brand : "Diabexy",
+       discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/71d5qdLVpNL._SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/61ZDbtLCd2L._SL1200_.jpg"
+      ],
+      video: "https://www.youtube.com/embed/NXVyAl5DJyc"
 
-    // },
-    // {
-    //   id: 25,
-    //   emoji: <img src="https://m.media-amazon.com/images/I/81MdF4B3F1L._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    //   name: "Parle Krack Jack Biscuit",
-    //    meaning:"Price : ₹10 (₹15.87/100 g)",
-    //    category:"Biscuits",
-    //    extraInfo: "Parle Krack Jack Biscuits are a **sweet and salty** delight, offering a perfect balance of **crunch and flavor**. A favorite tea-time snack, these biscuits are **light, crispy, and deliciously addictive**.",
-    //    price :  "10",
-    //    brand : "Parle",
-    //    discount : "0",
-    //    additionalImages: [
-    //     "https://m.media-amazon.com/images/I/8117ZZ8YC-L._SX679_.jpg",
-    //     "https://m.media-amazon.com/images/I/91Yw+xJS5gL._SX679_.jpg"
-    //   ],
-    //   video: "https://www.youtube.com/embed/cQN2GxLP63Y"
+    },
+    {
+      id: 25,
+      emoji: <img src="https://m.media-amazon.com/images/I/81MdF4B3F1L._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Parle Krack Jack Biscuit",
+       meaning:"Price : ₹10 (₹15.87/100 g)",
+       category:"Biscuits",
+       extraInfo: "Parle Krack Jack Biscuits are a **sweet and salty** delight, offering a perfect balance of **crunch and flavor**. A favorite tea-time snack, these biscuits are **light, crispy, and deliciously addictive**.",
+       price :  "10",
+       brand : "Parle",
+       discount : "0",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/8117ZZ8YC-L._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/91Yw+xJS5gL._SX679_.jpg"
+      ],
+      video: "https://www.youtube.com/embed/cQN2GxLP63Y"
 
 
-    // },
+    },
     {
       id: 26,
       emoji: <img src="https://m.media-amazon.com/images/I/61SIh+VJF7L._SX679_.jpg"></img>,

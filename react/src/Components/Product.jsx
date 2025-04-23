@@ -334,18 +334,18 @@ function Dashboard({ authorized }) {
       const scraped = getScrapedData(emoji.name);
       return scraped ? (
         <div className="mt-2 text-success small">
-          <strong>Amazon Price:</strong> {scraped.price} <br />
-          <a href={scraped.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
-        </div>
+        <strong style={{ color: 'red' }}>Amazon Price:{scraped.price} </strong> <br />
+        <a href={scraped.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
+      </div>
       ) : null;
     })()}
                         </div>
-                        <div className="d-grid gap-2">
+                        <div className="d-grid gap-2 mt-3">  {/* Added mt-3 for margin-top */}
   <button 
     className="btn btn-primary btn-sm w-100"
     onClick={(e) => {
       e.stopPropagation();
-      handleBuyNow(emoji, 1); // Default quantity 1 for quick buy
+      handleBuyNow(emoji, 1);
     }}
   >
     Buy Now
@@ -354,7 +354,7 @@ function Dashboard({ authorized }) {
     className="btn btn-success text-white btn-sm w-100"
     onClick={(e) => {
       e.stopPropagation();
-      handleAddToCart(emoji, 1); // Default quantity 1 for quick add
+      handleAddToCart(emoji, 1);
     }}
   >
     Add to Cart

@@ -112,7 +112,7 @@ function Home() {
       
       <div
   style={{
-    width: '100vw',           // Full screen width
+    width: '100vw',           
     height: '300px',
     overflow: 'hidden',
     position: 'relative'
@@ -130,7 +130,7 @@ function Home() {
       <div
         key={index}
         style={{
-          width: '100vw',       // One image takes full screen width
+          width: '100vw',       
           flexShrink: 0,
           height: '300px'
         }}

@@ -16,6 +16,8 @@ function Dashboard({ authorized }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(emojiData); 
   const [loading, setLoading] = useState(false);
+  const [scrapedPrices, setScrapedPrices] = useState([]);
+
   const productsPerPage = 9;
 
   const increaseQuantity = () => setQuantity(quantity + 1);
@@ -81,6 +83,14 @@ function Dashboard({ authorized }) {
     window.location.reload();
     });
   };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then((res) => res.json())
+      .then((data) => setScrapedPrices(data))
+      .catch((err) => console.error("Error fetching scraped prices:", err));
+  }, []);
+
   
 
   // Fetch data from API when "Devotional Products" is selected
@@ -159,6 +169,15 @@ function Dashboard({ authorized }) {
 
     return categoryMatch && searchMatch && priceMatch && brandMatch && discountMatch;
   });
+
+  const getScrapedData = (productName) => {
+    const match = scrapedPrices.find(p =>
+      productName.toLowerCase().includes(p.name.toLowerCase().split(" ")[0])
+    );
+    return match?.amazon || match?.flipkart || null;
+  };
+
+  
 
   // Pagination calculations
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -310,6 +329,15 @@ function Dashboard({ authorized }) {
                             className="card-text text-muted mb-4"
                             dangerouslySetInnerHTML={{ __html: emoji.meaning }}
                           ></p>
+                             {(() => {
+      const scraped = getScrapedData(emoji.name);
+      return scraped ? (
+        <div className="mt-2 text-success small">
+          <strong>Amazon Price:</strong> {scraped.price} <br />
+          <a href={scraped.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+      ) : null;
+    })()}
                         </div>
                         <div className="d-grid gap-2">
   <button 

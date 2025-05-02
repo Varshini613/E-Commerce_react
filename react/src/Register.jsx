@@ -14,37 +14,56 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Registered Successfully!");
-    navigate("/login");
+    
+    // Get the role from localStorage (it was set in the role selection page)
+    const role = localStorage.getItem("role");
+
+    // Add role to formData before sending it to the backend
+    const data = { ...formData, role };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // Send formData (including role) to backend
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Registered successfully!");
+        navigate("/login");
+      } else {
+        alert(result.message || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to register. Please try again.");
+    }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light"
-    style={{ 
-      backgroundImage: "url('shopping-bag-cart.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    }}>
+      style={{ 
+        backgroundImage: "url('shopping-bag-cart.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}>
       <div
-  className="card p-4 shadow-lg"
-  style={{
-    width: "400px",
-    backgroundColor: "rgba(255, 255, 255, 0.5)", // Slight white
-    borderRadius: "10px"
-  }}
->
-
-        {/* Register Form Header */}
+        className="card p-4 shadow-lg"
+        style={{
+          width: "400px",
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          borderRadius: "10px"
+        }}
+      >
         <h2 className="text-center mb-4">Register</h2>
 
-        {/* Registration Form */}
         <form onSubmit={handleSubmit}>
           {/* Full Name */}
           <div className="mb-3">
@@ -88,13 +107,11 @@ const Register = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <button type="submit" className="btn btn-success w-100">
             Register
           </button>
         </form>
 
-        {/* Login Redirect */}
         <p className="text-center mt-3">
           Already have an account?{" "}
           <span

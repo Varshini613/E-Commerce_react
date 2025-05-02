@@ -1,90 +1,135 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Form, Card, Alert } from "react-bootstrap";
 
-
-const Login = () => {
+const Login = ({ setAuthorized, setRole }) => {
   const navigate = useNavigate();
-
-  const correctUsername = "admin";
-  const correctPassword = "admin";
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  // Admin credentials (hardcoded for simplicity)
+  const adminEmail = "admin@example.com";
+  const adminPassword = "admin123";
+
+  // Check for role in localStorage on component mount
+  useEffect(() => {
+    const selectedRole = localStorage.getItem("role");
+    if (!selectedRole || !["user", "vendor", "admin"].includes(selectedRole)) {
+      localStorage.removeItem("role");
+      navigate("/role-selection");
+    }
+  }, [navigate]);
+
+  
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (username === correctUsername && password === correctPassword) {
-      alert("Login Successful!");
-      navigate("/products"); 
+  
+    const selectedRole = localStorage.getItem("role");
+  
+    if (selectedRole === "admin") {
+      if (username === adminEmail && password === adminPassword) {
+        localStorage.setItem("authorized", "true");
+        localStorage.setItem("role", "admin");
+        setRole("admin");
+        setAuthorized(true);
+        navigate("/admin-dashboard");
+      } else {
+        alert("Incorrect admin credentials. Please try again.");
+        return;
+      }
     } else {
-      alert("Invalid username or password!"); 
+      try {
+        const response = await fetch("http://localhost:5000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: username,
+            password: password,
+          }),
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          const userRole = data.user.role; // Role from database
+  
+          if (userRole !== selectedRole) {
+            // If role mismatch
+            setError("Invalid credentials or incorrect role.");
+            setTimeout(() => navigate("/role-selection"), 2000); // Redirect after error
+            return; // Stop further execution
+          }
+  
+          // Role matches, proceed normally
+          localStorage.setItem("authorized", "true");
+          localStorage.setItem("role", userRole);
+          setRole(userRole);
+          setAuthorized(true);
+  
+          if (userRole === "user") {
+            navigate("/user-dashboard");
+          } else if (userRole === "vendor") {
+            navigate("/vendor-dashboard");
+          } else {
+            setError("Unknown role assigned.");
+          }
+        } else {
+          setError(data.message || "Invalid credentials.");
+          setTimeout(() => navigate("/role-selection"), 2000);
+        }
+      } catch (error) {
+        setError("Error occurred while logging in.");
+      }
     }
   };
+  
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light"
-    style={{ 
-      backgroundImage: "url('shopping-bag-cart.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    }} >
-    <div
-  className="card p-4 shadow-lg"
-  style={{
-    width: "400px",
-    backgroundColor: "rgba(255, 255, 255, 0.5)", // Slight white
-    borderRadius: "10px"
-  }}
->
-
-
-
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <Card className="p-4 shadow" style={{ width: "400px", backgroundColor: "rgba(255, 255, 255, 0.8)", borderRadius: "10px" }}>
         <h2 className="text-center mb-4">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Username"
+        
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter your email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Password</label>
-            <input
+          </Form.Group>
+
+          <Form.Group className="mb-4">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
               type="password"
-              className="form-control"
-              placeholder="Enter Password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" className="w-100 mb-3">
+            Sign In
+          </Button>
+
+          <div className="text-center">
+            <span className="text-muted">Don't have an account? </span>
+            <Button variant="link" onClick={() => navigate("/register")} className="p-0">
+              Register here
+            </Button>
           </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Login
-          </button>
-        </form>
-        <p className="text-center mt-3">
-          Don't have an account?{" "}
-          <span
-            className="text-primary"
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate("/register")}
-          >
-            Register
-          </span>
-        </p>
-      </div>
+        </Form>
+      </Card>
     </div>
   );
 };

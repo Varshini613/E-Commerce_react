@@ -23,6 +23,30 @@ function Dashboard({ authorized }) {
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => quantity > 0 && setQuantity(quantity - 1);
   const navigate = useNavigate(); 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // You can include token if your API is protected
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error('Failed to fetch user:', error);
+      }
+    };
+  
+    fetchUser();
+  }, []);
+  
+  
  
   const handleAddToCart = (selectedEmoji, quantity) => {
     if (!selectedEmoji) return;
@@ -150,6 +174,45 @@ function Dashboard({ authorized }) {
       setProducts(emojiData);
     }
   }, [category, price, authorized]);
+  useEffect(() => {
+    if (category === "Stationary") {
+      setLoading(true);
+  
+      fetch("http://localhost:5000/api/products?category=Stationary")
+        .then((res) => res.json())
+        .then((data) => {
+          const transformedData = data.map(product => ({
+            id: product.id,
+            name: product.name,
+            meaning: `₹${product.price}`,
+            price: product.price,
+            discount: product.discount,
+            category: "Stationary",
+            brand: product.brand,
+            emoji: {
+              props: {
+                src: product.image || product.images?.[0]?.src || ""
+              }
+            },
+            extraInfo: product.extra_info || "",
+            additionalImages: [
+              product.additional_image1,
+              product.additional_image2
+            ].filter(Boolean),
+            video: product.video_url || "",
+          }));
+  
+          setProducts(transformedData);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching Stationary products:", error);
+          setLoading(false);
+        });
+    }
+  }, [category]);
+  
+  
   
   // Filtering Logic using the "products" state instead of emojiData directly
   const filteredData = products.filter((emoji) => {
@@ -200,6 +263,20 @@ function Dashboard({ authorized }) {
         draggable
         pauseOnHover
       />
+      <div className="d-flex justify-content-between align-items-center mb-4">
+  <h4>Welcome, {user?.username || "Guest"}!</h4>
+  <button
+    className="btn btn-danger"
+    onClick={() => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token"); // If you store tokens
+      navigate("/"); 
+    }}
+  >
+    Logout
+  </button>
+</div>
+
       <div className="row">
         {/* Left Sidebar Filters */}
         <div className="col-md-3">
@@ -221,6 +298,9 @@ function Dashboard({ authorized }) {
                 <option value="Biscuits">Biscuits</option>
                 <option value="Toys">Toys</option>
                 <option value="Devotional Products">Devotional Products</option>
+                <option value="Stationary">Stationary</option>
+                {/* <option value="Mobile Acessories">Mobile Accessories</option> */}
+
               </select>
             </div>
 

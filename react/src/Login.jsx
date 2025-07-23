@@ -32,6 +32,8 @@ const Login = ({ setAuthorized, setRole }) => {
       if (username === adminEmail && password === adminPassword) {
         localStorage.setItem("authorized", "true");
         localStorage.setItem("role", "admin");
+        localStorage.setItem("name", "Admin"); // Add admin name
+
         setRole("admin");
         setAuthorized(true);
         navigate("/admin-dashboard");
@@ -41,7 +43,7 @@ const Login = ({ setAuthorized, setRole }) => {
       }
     } else {
       try {
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch("http://localhost:3000/api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,6 +58,8 @@ const Login = ({ setAuthorized, setRole }) => {
   
         if (response.ok) {
           const userRole = data.user.role; // Role from database
+          const userName = data.user.name; // Get name from response
+
   
           if (userRole !== selectedRole) {
             // If role mismatch
@@ -67,6 +71,8 @@ const Login = ({ setAuthorized, setRole }) => {
           // Role matches, proceed normally
           localStorage.setItem("authorized", "true");
           localStorage.setItem("role", userRole);
+          localStorage.setItem("name", userName); // Store user name
+
           setRole(userRole);
           setAuthorized(true);
   
@@ -89,7 +95,12 @@ const Login = ({ setAuthorized, setRole }) => {
   
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light"  style={{ 
+      backgroundImage: "url('shopping-bag-cart.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}>
       <Card className="p-4 shadow" style={{ width: "400px", backgroundColor: "rgba(255, 255, 255, 0.8)", borderRadius: "10px" }}>
         <h2 className="text-center mb-4">Login</h2>
         

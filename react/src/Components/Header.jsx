@@ -81,6 +81,8 @@ const MyList = () => {
             <Link to="/cart" className="btn btn-primary text-white">
               🛒 Cart
             </Link>
+            <Link to="/" className="btn btn-danger text-white">
+            Logout</Link>
           </div>
         </div>
       </div>

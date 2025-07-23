@@ -1,12 +1,12 @@
 const emojipedia = [
   {
     id: 1,
-    emoji: <img src="https://m.media-amazon.com/images/I/61zzgxY+OzL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+    emoji: <img src="https://m.media-amazon.com/images/I/31XdcM-LNhL.jpg"></img>,
     name: "Britannia JimJam Pops - Crunchy Open Cookie with Vanilla crème and Jammy",
-    meaning: "Price : ₹100 (₹28.57/100 g)  <br/>  M.R.P: ₹1̶2̶0̶ (17% off)",
+    meaning: "Price : ₹20",
     category: "Biscuits",
     extraInfo: "First created in the 1930s, it became one of the most famous cookies worldwide.",
-    price: "100",
+    price: "20",
     brand: "Britannia",
     discount: "17",
     additionalImages: [
@@ -16,21 +16,23 @@ const emojipedia = [
     video: "https://www.youtube.com/embed/zG8Pp0Ku4vo"
    },
   {
-    id: 2,
-    emoji: <img src="https://m.media-amazon.com/images/I/61NxpyR9hfL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-    name: "Cadbury Chocobakes ChocLayered Cakes,(Cadbury Family Pack 200g)",
-    meaning: "Price : ₹131 (₹57.46/100 g) <br/> M.R.P: ₹1̶7̶5̶ (25% off)",
-    category: "Biscuits",
-    extraInfo: "Delicious chocolate-filled cakes from Cadbury, perfect for snack time!",
-    price: "131",
-    brand: "Cadbury",
-    discount: "25",
-    additionalImages: [
-      "https://m.media-amazon.com/images/I/712AWZeSGBL._SL1100_.jpg",
-      "https://m.media-amazon.com/images/I/51ca0MT-VUL._SL1100_.jpg"
-    ],
-    video: "https://www.youtube.com/embed/8FHjx0RCTYQ"
-  },
+      id: 2,
+      emoji: <img src="https://m.media-amazon.com/images/I/81Gpq9w9TUL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Sunfeast Dark Fantasy Dark Fantasy Choco Fills,Filled cookies 300g",
+      meaning:
+        "Price : ₹107 ",
+        category:"Biscuits",
+        extraInfo: "Indulge in rich, molten choco-filled cookies. Perfect for a delightful snack or dessert.",
+        price :  "107",
+        brand : "Sunfeast",
+        discount : "37",
+        additionalImages: [
+          "https://m.media-amazon.com/images/I/91sysS5+fgL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/710O4EmphyL._SL1500_.jpg"
+        ],
+        video: "https://www.youtube.com/embed/PX2-IUxTPwo"
+
+    },
 
 
     {
@@ -38,7 +40,7 @@ const emojipedia = [
       emoji: <img src="https://m.media-amazon.com/images/I/61yw3xmGdpL._AC_UL960_FMwebp_QL65_.jpg"></img>,
       name: "Wheafree Multigrain Gluten-Free Healthy Sweet and Salty (Namkeen) Jeera",
       meaning:
-        "Price : ₹245 (₹245/count) <br/> M.R.P: ₹3̶7̶5-(5% off)",
+        "Price : ₹245 (₹245/count) <br/> ",
         category:"Biscuits",
          extraInfo: "Gluten-free and high in fiber. A healthy snack option for all ages.",
         price :  "245",
@@ -54,31 +56,31 @@ const emojipedia = [
     },
     {
       id: 4,
-      emoji: <img src="https://m.media-amazon.com/images/I/81Gpq9w9TUL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-      name: "Sunfeast Dark Fantasy Dark Fantasy Choco Fills,Filled cookies 300g",
-      meaning:
-        "Price : ₹107 (₹38.91/100 g) <br/> M.R.P: ₹1̶7̶0̶ (37% off)",
-        category:"Biscuits",
-        extraInfo: "Indulge in rich, molten choco-filled cookies. Perfect for a delightful snack or dessert.",
-        price :  "107",
-        brand : "Sunfeast",
-        discount : "37",
-        additionalImages: [
-          "https://m.media-amazon.com/images/I/91sysS5+fgL._SL1500_.jpg",
-          "https://m.media-amazon.com/images/I/710O4EmphyL._SL1500_.jpg"
-        ],
-        video: "https://www.youtube.com/embed/PX2-IUxTPwo"
+      emoji: <img src="https://m.media-amazon.com/images/I/71cARUcpkVL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+      name: "Britannia Good Day Choco Chip Cookies",
+       meaning:"Price : ₹77 (₹19.25/100 g) <br/> M.R.P: ₹1̶5̶0̶ (49% off)",
+       category:"Biscuits",
+       extraInfo: "Deliciously crunchy cookies packed with real chocolate chips, offering a rich and indulgent treat for chocolate lovers.",
+       price :  "77",
+       brand : "Britannia",
+       discount : "49",
+       additionalImages: [
+        "https://m.media-amazon.com/images/I/81PmcAC0bBL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/71ZJmyXxi8L._SX679_.jpg"
+      ],
+      video: "https://www.youtube.com/embed/-sVbkGNXjag"
 
     },
+    
     {
       id: 5,
       emoji: <img src="https://m.media-amazon.com/images/I/9168NMg+3sL._AC_UL480_FMwebp_QL65_.jpg"></img>,
       name: "Sunfeast Farmlite 5 Seed Digestive Biscuit | High Fibre | Goodness of 5 Power Seeds & Wheat Fibre",
       meaning:
-        "Price : ₹100 (₹12.50/100 g) <br/> M.R.P: ₹2̶4̶0̶ (58% off)",
+        "Price : ₹110 <br/> M.R.P: ₹2̶4̶0̶ (58% off)",
         category:"Biscuits",
         extraInfo: "Made with 5 power-packed seeds: Flax, Sunflower, Chia, Pumpkin & Watermelon. A healthy and delicious snack for a guilt-free indulgence.",
-        price :  "100",
+        price :  "110",
         brand : "Sunfeast",
         discount : "58",
         additionalImages: [
@@ -94,7 +96,7 @@ const emojipedia = [
       emoji: <img src="https://m.media-amazon.com/images/I/61CzyMAMoHL._AC_UL480_FMwebp_QL65_.jpg"></img>,
       name: "Britannia Good Day Cashew Cookies,1000g",
       meaning:
-        "Price : ₹141 (₹14.10/100 g) <br/> M.R.P: ₹3̶2̶0̶ (56% off)",
+        "Price : ₹141  <br/> M.R.P: ₹3̶2̶0̶ (56% off)",
         category:"Biscuits",
         extraInfo: "Rich, crunchy cashew cookies made with real cashew bits. Perfect with tea or coffee for a delightful snack.",
         price :  "141",
@@ -112,7 +114,7 @@ const emojipedia = [
       emoji: <img src="https://m.media-amazon.com/images/I/61jGTpWTr8L._AC_UL480_FMwebp_QL65_.jpg"></img>,
       name: "Karachi Bakery Osmania Biscuits, 400g",
       meaning:
-        "Price : ₹145 (₹36.25/100 g) <br/> M.R.P: ₹1̶8̶0̶ (19% off)",
+        "Price : ₹145  <br/> M.R.P: ₹1̶8̶0̶ (19% off)",
         category:"Biscuits",
         extraInfo: "Traditional Hyderabad special biscuits with a rich, buttery taste and a perfect blend of sweet and salty flavors.",
         price :  "145",
@@ -147,7 +149,7 @@ const emojipedia = [
       emoji: <img src="https://m.media-amazon.com/images/I/61BLfXsvmBL._AC_UL480_FMwebp_QL65_.jpg"></img>,
       name: "Britannia Nutri Choice Digestive & sugarfree, 1Kg",
       meaning:
-        "Price : ₹139 (₹13.90/100 g) <br/> M.R.P: ₹1̶9̶9̶ (30% off)",
+        "Price : ₹139  <br/> M.R.P: ₹1̶9̶9̶ (30% off)",
         category:"Biscuits",
         extraInfo: "High-fiber digestive biscuits made with whole wheat, perfect for a healthy snack. No trans fat and no cholesterol.",
         price :  "139",
@@ -285,23 +287,23 @@ const emojipedia = [
       video: "https://www.example.com/sample-video2.mp4"
 
     },
+    
     {
-      id: 17,
-      emoji: <img src="https://m.media-amazon.com/images/I/71cARUcpkVL._AC_UL480_FMwebp_QL65_.jpg"></img>,
-      name: "Britannia Good Day Choco Chip Cookies",
-       meaning:"Price : ₹77 (₹19.25/100 g) <br/> M.R.P: ₹1̶5̶0̶ (49% off)",
-       category:"Biscuits",
-       extraInfo: "Deliciously crunchy cookies packed with real chocolate chips, offering a rich and indulgent treat for chocolate lovers.",
-       price :  "77",
-       brand : "Britannia",
-       discount : "49",
-       additionalImages: [
-        "https://m.media-amazon.com/images/I/81PmcAC0bBL._SX679_.jpg",
-        "https://m.media-amazon.com/images/I/71ZJmyXxi8L._SX679_.jpg"
-      ],
-      video: "https://www.youtube.com/embed/-sVbkGNXjag"
-
-    },
+    id: 17,
+    emoji: <img src="https://m.media-amazon.com/images/I/61NxpyR9hfL._AC_UL480_FMwebp_QL65_.jpg"></img>,
+    name: "Cadbury Chocobakes ChocLayered Cakes,(Cadbury Family Pack 200g)",
+    meaning: "Price : ₹80<br/>",
+    category: "Biscuits",
+    extraInfo: "Delicious chocolate-filled cakes from Cadbury, perfect for snack time!",
+    price: "131",
+    brand: "Cadbury",
+    discount: "25",
+    additionalImages: [
+      "https://m.media-amazon.com/images/I/712AWZeSGBL._SL1100_.jpg",
+      "https://m.media-amazon.com/images/I/51ca0MT-VUL._SL1100_.jpg"
+    ],
+    video: "https://www.youtube.com/embed/8FHjx0RCTYQ"
+  },
     {
       id: 18,
       emoji: <img src="https://m.media-amazon.com/images/I/71bufOt9zAL._AC_UL480_FMwebp_QL65_.jpg"></img>,

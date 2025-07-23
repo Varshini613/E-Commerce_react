@@ -12,12 +12,12 @@ const AdminDashboard = () => {
   const [editingUser, setEditingUser] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch('http://localhost:3000/api/products')
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(err => console.error('Error fetching products:', err));
 
-    fetch('http://localhost:5000/api/users')
+    fetch('http://localhost:3000/api/users')
       .then(res => res.json())
       .then(data => setUsers(data))
       .catch(err => console.error('Error fetching users:', err));
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   };
 
   const handleSaveProductEdit = (updatedProduct) => {
-    fetch(`http://localhost:5000/api/products/${updatedProduct.id}`, {
+    fetch(`http://localhost:3000/api/products/${updatedProduct.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedProduct)
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteProduct = (productId) => {
-    fetch(`http://localhost:5000/api/products/${productId}`, {
+    fetch(`http://localhost:3000/api/products/${productId}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
   };
 
   const handleSaveUserEdit = (updatedUser) => {
-    fetch(`http://localhost:5000/api/users/${updatedUser.id}`, {
+    fetch(`http://localhost:3000/api/users/${updatedUser.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedUser)
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteUser = (userId) => {
-    fetch(`http://localhost:5000/api/users/${userId}`, {
+    fetch(`http://localhost:3000/api/users/${userId}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -76,11 +76,15 @@ const AdminDashboard = () => {
       })
       .catch(err => console.error("User deletion error:", err));
   };
-
+  const handleLogout = () => {
+    // Clear any stored session data here
+    // For example: localStorage.removeItem('authToken');
+    navigate('/');
+  };
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">Admin Dashboard</h1>
-
+      
       <div className="d-flex justify-content-between mb-4">
         <div>
           <button
@@ -95,6 +99,9 @@ const AdminDashboard = () => {
           >
             👥 Registered Users
           </button>
+          <button className="btn btn-outline-danger" onClick={handleLogout} style={{marginLeft:"4px"}}>
+                🚪 Logout
+        </button>
         </div>
       </div>
 

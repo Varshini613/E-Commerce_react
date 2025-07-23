@@ -15,10 +15,11 @@ const RoleSelection = () => {
   return (
     <div 
       className="d-flex justify-content-center align-items-center vh-100"
-      style={{
-        background: "linear-gradient(135deg, #f0f9ff 0%, #cfe0fc 100%)",
-        overflow: "hidden",
-        position: "relative",
+       style={{ 
+        backgroundImage: "url('shopping-bag-cart.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* Decorative Circles */}

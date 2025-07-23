@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "user_db", // Your created database
+  database: "user_db",
 });
 
 db.connect((err) => {
@@ -64,56 +64,55 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-// ✅ Product Insert API (with vendor_name matching the DB column name)
+// Insert Product
 app.post("/api/products", (req, res) => {
-    const {
-      vendorName,
-      name,
-      description,
-      price,
-      brand,
-      category,
-      discount,
-      image,
-      additionalImages = [],
-      videoUrl,
-      extraInfo
-    } = req.body;
-  
-    console.log("Received product:", req.body); // 🛠 Debug log
-  
-    const query = `
-      INSERT INTO products 
-      (vendor_name, name, description, price, brand, category, discount, image, 
-      additional_image1, additional_image2, video_url, extra_info)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-  
-    const values = [
-      vendorName || '',
-      name || '',
-      description || '',
-      price || 0,
-      brand || '',
-      category || '',
-      discount || 0,
-      image || '',
-      additionalImages[0] || '',
-      additionalImages[1] || '',
-      videoUrl || '',
-      extraInfo || ''
-    ];
-  
-    db.query(query, values, (err, result) => {
-      if (err) {
-        console.error("Insert error:", err);
-        return res.status(500).json({ error: "Database error" });
-      }
-  
-      res.status(201).json({ message: "Product added", id: result.insertId });
-    });
+  const {
+    vendorName,
+    name,
+    description,
+    price,
+    brand,
+    category,
+    discount,
+    image,
+    additionalImages = [],
+    videoUrl,
+    extraInfo,
+  } = req.body;
+
+  const query = `
+    INSERT INTO products 
+    (vendor_name, name, description, price, brand, category, discount, image, 
+    additional_image1, additional_image2, video_url, extra_info)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    vendorName || '',
+    name || '',
+    description || '',
+    price || 0,
+    brand || '',
+    category || '',
+    discount || 0,
+    image || '',
+    additionalImages[0] || '',
+    additionalImages[1] || '',
+    videoUrl || '',
+    extraInfo || ''
+  ];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Insert error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.status(201).json({ message: "Product added", id: result.insertId });
   });
-  // ✅ Get all registered users
+});
+
+// Get All Users
 app.get("/api/users", (req, res) => {
   const query = "SELECT * FROM users";
   db.query(query, (err, results) => {
@@ -124,41 +123,29 @@ app.get("/api/users", (req, res) => {
     res.status(200).json(results);
   });
 });
-// ✅ Get all products
+
+// Get All Products (with optional category filter)
 app.get("/api/products", (req, res) => {
-  const query = "SELECT * FROM products";
-  db.query(query, (err, results) => {
+  const category = req.query.category;
+  let query = "SELECT * FROM products";
+  const params = [];
+
+  if (category) {
+    query += " WHERE category = ?";
+    params.push(category);
+  }
+
+  db.query(query, params, (err, results) => {
     if (err) {
       console.error("Error fetching products:", err);
       return res.status(500).json({ error: "Database error" });
     }
-    // console.log("Fetched from DB:", results); // ✅ DEBUG
     res.status(200).json(results);
   });
 });
 
-// Example: GET /api/products?category=Stationary
-app.get('/api/products', async (req, res) => {
-  const category = req.query.category;
-
-  let query = 'SELECT * FROM products';
-  const params = [];
-
-  if (category) {
-    query += ' WHERE category = ?';
-    params.push(category);
-  }
-
-  try {
-    const [rows] = await db.execute(query, params); // Adjust for your DB library
-    res.json(rows);
-  } catch (error) {
-    console.error("Database error:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.put('/api/products/:id', (req, res) => {
+// Update Product
+app.put("/api/products/:id", (req, res) => {
   const { id } = req.params;
   const {
     vendor_name, name, description, price, brand, category, discount,
@@ -175,7 +162,7 @@ app.put('/api/products/:id', (req, res) => {
   db.query(query, [
     vendor_name, name, description, price, brand, category, discount,
     image, additional_image1, additional_image2, video_url, extra_info, id
-  ], (err, result) => {
+  ], (err) => {
     if (err) {
       console.error("Update error:", err);
       return res.status(500).send("Error updating product");
@@ -184,14 +171,13 @@ app.put('/api/products/:id', (req, res) => {
   });
 });
 
-
-// PUT /api/users/:id
-app.put('/api/users/:id', (req, res) => {
+// Update User
+app.put("/api/users/:id", (req, res) => {
   const { id } = req.params;
   const { name, email, password, role } = req.body;
 
   const query = "UPDATE users SET name = ?, email = ?, password = ?, role = ? WHERE id = ?";
-  db.query(query, [name, email, password, role, id], (err, result) => {
+  db.query(query, [name, email, password, role, id], (err) => {
     if (err) {
       console.error("Update error:", err);
       return res.status(500).send("Error updating user");
@@ -200,55 +186,78 @@ app.put('/api/users/:id', (req, res) => {
   });
 });
 
-// ✅ DELETE product by ID
-app.delete('/api/products/:id', (req, res) => {
-  const productId = req.params.id;
-  Product.deleteOne({ _id: productId })
-    .then(() => {
-      res.status(200).send('Product deleted successfully');
-    })
-    .catch((err) => {
-      console.error('Error deleting product:', err);
-      res.status(500).send('Error deleting product');
-    });
+// Delete Product by ID
+app.delete("/api/products/:id", (req, res) => {
+  const { id } = req.params;
+  const query = "DELETE FROM products WHERE id = ?";
+
+  db.query(query, [id], (err) => {
+    if (err) {
+      console.error("Error deleting product:", err);
+      return res.status(500).send("Error deleting product");
+    }
+    res.send("Product deleted successfully");
+  });
 });
 
+// Delete User by ID
+app.delete("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const query = "DELETE FROM users WHERE id = ?";
 
-// ✅ DELETE user by ID
-app.delete('/api/users/:id', (req, res) => {
-  const userId = req.params.id;
-  User.deleteOne({ _id: userId })
-    .then(() => {
-      res.status(200).send('User deleted successfully');
-    })
-    .catch((err) => {
-      console.error('Error deleting user:', err);
-      res.status(500).send('Error deleting user');
-    });
+  db.query(query, [id], (err) => {
+    if (err) {
+      console.error("Error deleting user:", err);
+      return res.status(500).send("Error deleting user");
+    }
+    res.send("User deleted successfully");
+  });
 });
 
+app.post("/api/orders", (req, res) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    address,
+    dispatchOption,
+    shippingCost,
+    totalPrice,
+    paymentMethod,
+    cartItems,
+  } = req.body;
 
-// Example login route (Node.js / Express)
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const orderQuery = `
+    INSERT INTO orders (first_name, last_name, email, address, dispatch_option, shipping_cost, total_price, payment_method)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  const user = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+  db.query(
+    orderQuery,
+    [firstName, lastName, email, address, dispatchOption, shippingCost, totalPrice, paymentMethod],
+    (err, orderResult) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Error inserting order" });
+      }
 
-  if (user && user[0].password === password) {
-    // Don't return the password!
-    const userData = {
-      id: user[0].id,
-      name: user[0].name,
-      email: user[0].email,
-    };
+      const orderId = orderResult.insertId;
 
-    res.json(userData); // Return full user data
-  } else {
-    res.status(401).json({ message: "Invalid credentials" });
-  }
+      const itemValues = cartItems.map((item) => [orderId, item.name, item.quantity, item.price]);
+      const itemsQuery = "INSERT INTO order_items (order_id, product_name, quantity, price) VALUES ?";
+
+      db.query(itemsQuery, [itemValues], (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ message: "Error inserting order items" });
+        }
+
+        res.json({ message: "Order placed successfully" });
+      });
+    }
+  );
 });
 
-    // Start server
+// Start server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

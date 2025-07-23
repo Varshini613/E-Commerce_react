@@ -133,30 +133,30 @@ app.get('/api/products', async (req, res) => {
       }
 
       // === FLIPKART ===
-      try {
-        const flipkartUrl = `https://www.flipkart.com/search?q=${encodeURIComponent(biscuit)}`;
-        const flipHtml = await safeRequest(flipkartUrl, {
-          "User-Agent": getRandomUserAgent(),
-        });
+    //   try {
+    //     const flipkartUrl = `https://www.flipkart.com/search?q=${encodeURIComponent(biscuit)}`;
+    //     const flipHtml = await safeRequest(flipkartUrl, {
+    //       "User-Agent": getRandomUserAgent(),
+    //     });
 
-        if (flipHtml) {
-          const $$ = cheerio.load(flipHtml);
-          $$('._1AtVbE').each((i, el) => {
-            const name = $$(el).find("._4rR01T, .s1Q9rs").text().trim();
-            const price = $$(el).find("._30jeq3").first().text().trim();
-            const mrp = $$(el).find("._3I9_wc").first().text().trim() || "MRP Not Available";
-            const image = $$(el).find("img").attr("src") || "";
-            const link = "https://www.flipkart.com" + ($$(el).find("a").attr("href") || "");
+    //     if (flipHtml) {
+    //       const $$ = cheerio.load(flipHtml);
+    //       $$('._1AtVbE').each((i, el) => {
+    //         const name = $$(el).find("._4rR01T, .s1Q9rs").text().trim();
+    //         const price = $$(el).find("._30jeq3").first().text().trim();
+    //         const mrp = $$(el).find("._3I9_wc").first().text().trim() || "MRP Not Available";
+    //         const image = $$(el).find("img").attr("src") || "";
+    //         const link = "https://www.flipkart.com" + ($$(el).find("a").attr("href") || "");
 
-            if (name && name.toLowerCase().includes(biscuit.toLowerCase().split(" ")[0])) {
-              product.flipkart = { name, price, mrp, image, link, timestamp: new Date().toISOString() };
-              return false; // stop loop
-            }
-          });
-        }
-      } catch (err) {
-        console.log(`❌ Flipkart scrape error for: ${biscuit}`);
-      }
+    //         if (name && name.toLowerCase().includes(biscuit.toLowerCase().split(" ")[0])) {
+    //           product.flipkart = { name, price, mrp, image, link, timestamp: new Date().toISOString() };
+    //           return false; // stop loop
+    //         }
+    //       });
+    //     }
+    //   } catch (err) {
+    //     console.log(`❌ Flipkart scrape error for: ${biscuit}`);
+    //   }
 
       finalProducts.push(product);
     }

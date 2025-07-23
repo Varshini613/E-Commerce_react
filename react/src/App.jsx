@@ -45,7 +45,9 @@ function MainApp() {
   
 
   // Paths where Header and Footer should be hidden
-  const hideHeaderFooterPaths = ['/login', '/register', '/role-selection', '/admin-dashboard'];
+  // Paths where Header and Footer should be hidden
+const hideHeaderFooterPaths = ['/', '/login', '/register', '/role-selection', '/admin-dashboard','/vendor-dashboard','/vendor-dashboard/add-product'];
+
 
   return (
     <>

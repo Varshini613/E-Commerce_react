@@ -423,11 +423,37 @@ const [showBillingDetails, setShowBillingDetails] = useState(false);
               marginTop: "10px",
             }}
             onClick={() => {
-              alert("Order placed successfully!");
-              localStorage.removeItem("cart");
-              window.dispatchEvent(new Event("cartUpdated"));
-              setShowQRModal(false);
-              navigate("/");
+              const submitOrderToServer = async () => {
+                const orderData = {
+                  ...formData,
+                  cartItems,
+                  totalPrice: updatedTotalPrice,
+                  paymentMethod: selectedMethod,
+                };
+              
+                try {
+                  const res = await fetch("http://localhost:5000/api/orders", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(orderData),
+                  });
+              
+                  const result = await res.json();
+              
+                  if (res.ok) {
+                    alert("Order placed successfully!");
+                    localStorage.removeItem("cart");
+                    window.dispatchEvent(new Event("cartUpdated"));
+                    navigate("/products");
+                  } else {
+                    alert("Order failed: " + result.message);
+                  }
+                } catch (error) {
+                  console.error("Submit error:", error);
+                  alert("An error occurred while submitting the order.");
+                }
+              };
+              
             }}
             
           >

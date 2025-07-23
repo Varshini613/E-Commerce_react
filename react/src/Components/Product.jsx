@@ -25,10 +25,13 @@ function Dashboard({ authorized }) {
   const navigate = useNavigate(); 
   const [user, setUser] = useState(null);
 
+
+  
   useEffect(() => {
+    
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user', {
+        const response = await fetch('http://localhost:3000/api/user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +50,9 @@ function Dashboard({ authorized }) {
   }, []);
   
   
- 
+  const username = localStorage.getItem('name'); // Just a string
+
+
   const handleAddToCart = (selectedEmoji, quantity) => {
     if (!selectedEmoji) return;
     
@@ -65,6 +70,7 @@ function Dashboard({ authorized }) {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
+          onClose: () => window.location.reload() 
         });
       } else {
         cartItems.push({
@@ -81,11 +87,13 @@ function Dashboard({ authorized }) {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
+          onClose: () => window.location.reload() 
         });
       }
   
       localStorage.setItem("cart", JSON.stringify(cartItems));
       window.dispatchEvent(new Event("cartUpdated"));
+     
       
     } catch (error) {
       toast.error("Failed to add item to cart", {
@@ -145,7 +153,7 @@ function Dashboard({ authorized }) {
         }).then((res) => res.json());
       };
   
-      Promise.all([fetchCategoryData(10), fetchCategoryData(14)])
+      Promise.all([fetchCategoryData(14), fetchCategoryData(10)])
         .then(([data1, data2]) => {
           const allData = [...data1, ...data2];
   
@@ -175,10 +183,10 @@ function Dashboard({ authorized }) {
     }
   }, [category, price, authorized]);
   useEffect(() => {
-    if (category === "Stationary") {
+    if (category === "Mobile Accessories") {
       setLoading(true);
   
-      fetch("http://localhost:5000/api/products?category=Stationary")
+      fetch(`http://localhost:3000/api/products?category=${encodeURIComponent(category)}`)
         .then((res) => res.json())
         .then((data) => {
           const transformedData = data.map(product => ({
@@ -187,7 +195,7 @@ function Dashboard({ authorized }) {
             meaning: `₹${product.price}`,
             price: product.price,
             discount: product.discount,
-            category: "Stationary",
+            category: "Mobile Accessories",
             brand: product.brand,
             emoji: {
               props: {
@@ -206,7 +214,7 @@ function Dashboard({ authorized }) {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching Stationary products:", error);
+          console.error("Error fetching Mobile Accessories:", error);
           setLoading(false);
         });
     }
@@ -264,17 +272,8 @@ function Dashboard({ authorized }) {
         pauseOnHover
       />
       <div className="d-flex justify-content-between align-items-center mb-4">
-  <h4>Welcome, {user?.username || "Guest"}!</h4>
-  <button
-    className="btn btn-danger"
-    onClick={() => {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token"); // If you store tokens
-      navigate("/"); 
-    }}
-  >
-    Logout
-  </button>
+      <h4>Welcome,{username}!</h4>
+    
 </div>
 
       <div className="row">
@@ -298,8 +297,9 @@ function Dashboard({ authorized }) {
                 <option value="Biscuits">Biscuits</option>
                 <option value="Toys">Toys</option>
                 <option value="Devotional Products">Devotional Products</option>
-                <option value="Stationary">Stationary</option>
-                {/* <option value="Mobile Acessories">Mobile Accessories</option> */}
+                <option value="Mobile Accessories">Mobile Accessories</option>
+
+               
 
               </select>
             </div>
@@ -414,7 +414,7 @@ function Dashboard({ authorized }) {
       const scraped = getScrapedData(emoji.name);
       return scraped ? (
         <div className="mt-2 text-success small">
-        <strong style={{ color: 'red' }}>Amazon Price:{scraped.price} </strong> <br />
+        <strong style={{ color: 'red'}}>Amazon Price:{scraped.price} </strong> <br />
         <a href={scraped.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
       </div>
       ) : null;

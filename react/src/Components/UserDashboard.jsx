@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const UserDashboard = () => {
+function UserDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect to the products page after login
+    // Automatically navigate to /products when this component mounts
     navigate('/products');
   }, [navigate]);
 
-  return null; // Optional: could show a loading spinner here
-};
+  return null; // or return a loading spinner or message if needed
+}
 
 export default UserDashboard;

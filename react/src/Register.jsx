@@ -16,26 +16,24 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Get the role from localStorage (it was set in the role selection page)
+  
     const role = localStorage.getItem("role");
-
-    // Add role to formData before sending it to the backend
     const data = { ...formData, role };
-
+  
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data), // Send formData (including role) to backend
+        body: JSON.stringify(data),
       });
-
-      const result = await response.json();
-
+  
+      const isJson = response.headers.get("content-type")?.includes("application/json");
+      const result = isJson ? await response.json() : { message: await response.text() };
+  
       if (response.ok) {
-        alert("Registered successfully!");
+        alert(result.message || "Registered successfully!");
         navigate("/login");
       } else {
         alert(result.message || "Something went wrong.");
@@ -45,7 +43,7 @@ const Register = () => {
       alert("Failed to register. Please try again.");
     }
   };
-
+  
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light"
       style={{ 

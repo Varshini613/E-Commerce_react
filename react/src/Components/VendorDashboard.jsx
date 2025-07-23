@@ -5,23 +5,60 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const VendorDashboard = () => {
   const navigate = useNavigate();
 
-  // Function to handle "Add Product" button click
   const goToAddProduct = () => {
-    navigate('/vendor-dashboard/add-product'); // updated path for vendor
+    navigate('/vendor-dashboard/add-product');
+  };
+
+  const handleLogout = () => {
+    // Optional: localStorage.removeItem('token');
+    navigate('/');
   };
 
   return (
-    <div className="text-center mt-20">
-      <h1 className="text-4xl font-bold text-black">Welcome to Vendor Dashboard</h1>
-      <p className="text-lg text-black">Manage your products and inventory here.</p>
+    <div
+      className="d-flex flex-column justify-content-center align-items-center vh-100 text-center"
+      style={{
+        backgroundImage: `url('shopping-bag-cart.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        color: 'black'
+      }}
+    >
+      <h1 className="text-4xl font-bold mb-3">Welcome to Vendor Dashboard</h1>
+      <p className="text-lg mb-4">Manage your products and inventory here.</p>
 
-      {/* Button to add a new product */}
-      <button
-        onClick={goToAddProduct}
-        className="mt-6 px-5 py-3 bg-blue-500 text-black font-semibold rounded-lg shadow hover:bg-blue-600 transition duration-300"
-      >
-        Add Product
-      </button>
+      {/* Buttons Container */}
+      <div>
+        <button
+          onClick={goToAddProduct}
+          style={{
+            backgroundColor: 'blue',
+            color: 'white',
+            marginRight: '10px',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        >
+          Add Product
+        </button>
+
+        <button
+          onClick={handleLogout}
+          style={{
+            backgroundColor: 'blue',
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
